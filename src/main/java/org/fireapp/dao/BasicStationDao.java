@@ -22,6 +22,5 @@ public class BasicStationDao extends BaseDao<BasicStation> {
 	public List<BasicStation> findAllStations() {
 
 		return this.query( "FROM BasicStation" );
-		
 	}
 }
