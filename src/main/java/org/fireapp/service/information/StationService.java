@@ -5,7 +5,7 @@ import java.util.List;
 import org.fireapp.dao.BasicStationDao;
 import org.fireapp.model.station.BasicStation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * This class provides methods for accessing information
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @author Louis Drotos
  *
  */
-@Component
+@Service
 public class StationService {
 
 	@Autowired

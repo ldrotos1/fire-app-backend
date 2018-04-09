@@ -6,7 +6,7 @@ import org.fireapp.HibernateUtils;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 /**
  * A base DAO class that all other DAO classes should extend
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @author Louis Drotos
  *
  */
-@Component
+@Repository( "baseDao" )
 public abstract class BaseDao<T> {
 
 	@Autowired

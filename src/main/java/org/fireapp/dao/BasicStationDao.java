@@ -1,6 +1,6 @@
 package org.fireapp.dao;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import org.fireapp.model.station.BasicStation;
  * @author Louis Drotos
  *
  */
-@Component
+@Repository( "basicStationDao" )
 public class BasicStationDao extends BaseDao<BasicStation> {
 
 	/**
