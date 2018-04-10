@@ -28,6 +28,7 @@ public class StationService {
 	 * Returns a list of all fire stations
 	 * 
 	 * @return The list of fire stations
+	 * @throws Exception 
 	 */
 	public List<BasicStation> getAllStations() {
 		
