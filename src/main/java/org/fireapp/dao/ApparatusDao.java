@@ -1,0 +1,28 @@
+package org.fireapp.dao;
+
+import java.util.List;
+
+import org.fireapp.model.apparatus.Apparatus;
+import org.springframework.stereotype.Repository;
+
+/**
+ * An instance of this class is used to access apparatus objects
+ * from the database
+ * 
+ * @author Louis Drotos
+ *
+ */
+@Repository( "apparatusDao" )
+public class ApparatusDao extends BaseDao<Apparatus>  {
+
+	/**
+	 * Gets a list of apparatus assigned to the specified station
+	 * 
+	 * @param designator The station designator
+	 * @return The list of assigned apparatus
+	 */
+	public List<Apparatus> getApparatusAssignedToStation( Integer designator ) {
+
+		return this.query( "FROM Apparatus a WHERE a.stationDesignator = " + designator );
+	}
+}

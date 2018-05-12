@@ -2,8 +2,11 @@ package org.fireapp.service.information;
 
 import java.util.List;
 
+import org.fireapp.dao.ApparatusDao;
 import org.fireapp.dao.BasicStationDao;
+import org.fireapp.dao.FullStationDao;
 import org.fireapp.model.station.BasicStation;
+import org.fireapp.model.station.FullStation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +21,13 @@ import org.springframework.stereotype.Service;
 public class StationService {
 
 	@Autowired
-	private BasicStationDao stationDao;
+	private BasicStationDao basicStationDao;
+	
+	@Autowired
+	private FullStationDao fullStationDao;
+	
+	@Autowired
+	private ApparatusDao apparatusDao;
 	
 	public StationService() {
 		// Empty body
@@ -28,10 +37,23 @@ public class StationService {
 	 * Returns a list of all fire stations
 	 * 
 	 * @return The list of fire stations
-	 * @throws Exception 
 	 */
 	public List<BasicStation> getAllStations() {
 		
-		return stationDao.findAllStations();
+		return basicStationDao.findAllStations();
+	}
+	
+	/**
+	 * Returns the specified station record
+	 * 
+	 * @param id The station ID
+	 * @return The station record
+	 */
+	public FullStation getStation( Integer id ) {
+		
+		FullStation station = fullStationDao.getStation( id );
+		station.setApparatus( apparatusDao.getApparatusAssignedToStation( station.getDesignator() ) );
+		
+		return station;
 	}
 }

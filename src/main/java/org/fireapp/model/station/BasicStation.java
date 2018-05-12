@@ -19,11 +19,14 @@ public class BasicStation {
 
 	@Id
 	@GeneratedValue
-	@Column( name = "id" )
-	private Integer id;
+	@Column( name = "station_id" )
+	private Integer stationId;
 	
 	@Column( name = "number" )
 	private Integer number;
+	
+	@Column( name = "station_designator" )
+	private Integer designator;
 	
 	@Column( name = "name" )
 	private String name;
@@ -35,19 +38,27 @@ public class BasicStation {
 	private Double lon;
 	
 	public BasicStation() {
-
+		// Empty body
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getStationId() {
+		return stationId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setStationId(Integer stationId) {
+		this.stationId = stationId;
 	}
 
 	public Integer getNumber() {
 		return number;
+	}
+
+	public void setDesignator(Integer designator) {
+		this.designator = designator;
+	}
+	
+	public Integer getDesignator() {
+		return designator;
 	}
 
 	public void setNumber(Integer number) {

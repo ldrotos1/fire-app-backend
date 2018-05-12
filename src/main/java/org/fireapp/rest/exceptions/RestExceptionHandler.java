@@ -16,6 +16,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler( Exception.class )
 	public final ResponseEntity<ErrorDetails> handleUserNotFoundException( Exception ex, WebRequest request ) {
 		
+		ex.printStackTrace();
+		
 	    ErrorDetails errorDetails = new ErrorDetails( "Unable to process your request at this time", request.getDescription( false ) );
 	    return new ResponseEntity<>( errorDetails, HttpStatus.SERVICE_UNAVAILABLE );
 	}
