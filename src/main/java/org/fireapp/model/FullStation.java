@@ -1,4 +1,4 @@
-package org.fireapp.model.station;
+package org.fireapp.model;
 
 import java.util.List;
 
@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
-import org.fireapp.model.apparatus.Apparatus;
 
 /**
   * An entity class that provides a complete representation 

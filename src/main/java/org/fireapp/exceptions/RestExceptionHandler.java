@@ -1,6 +1,5 @@
-package org.fireapp.rest.exceptions;
+package org.fireapp.exceptions;
 
-import org.fireapp.model.exceptions.ErrorDetails;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

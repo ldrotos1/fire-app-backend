@@ -1,10 +1,10 @@
-package org.fireapp.rest.information;
+package org.fireapp.rest;
 
 import java.util.List;
 
-import org.fireapp.model.station.BasicStation;
-import org.fireapp.model.station.FullStation;
-import org.fireapp.service.information.StationService;
+import org.fireapp.model.BasicStation;
+import org.fireapp.model.FullStation;
+import org.fireapp.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

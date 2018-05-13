@@ -1,6 +1,6 @@
 package org.fireapp.dao;
 
-import org.fireapp.model.station.FullStation;
+import org.fireapp.model.FullStation;
 import org.springframework.stereotype.Repository;
 
 @Repository( "fullStationDao" )

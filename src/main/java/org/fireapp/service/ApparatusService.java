@@ -1,9 +1,9 @@
-package org.fireapp.service.information;
+package org.fireapp.service;
 
 import java.util.List;
 
 import org.fireapp.dao.ApparatusDao;
-import org.fireapp.model.apparatus.Apparatus;
+import org.fireapp.model.Apparatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

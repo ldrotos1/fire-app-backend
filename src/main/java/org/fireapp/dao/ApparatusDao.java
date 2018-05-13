@@ -2,7 +2,7 @@ package org.fireapp.dao;
 
 import java.util.List;
 
-import org.fireapp.model.apparatus.Apparatus;
+import org.fireapp.model.Apparatus;
 import org.springframework.stereotype.Repository;
 
 /**

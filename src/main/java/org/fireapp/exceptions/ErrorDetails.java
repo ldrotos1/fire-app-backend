@@ -1,4 +1,4 @@
-package org.fireapp.model.exceptions;
+package org.fireapp.exceptions;
 
 /**
  * A class for representing error information

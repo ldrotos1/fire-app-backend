@@ -1,10 +1,9 @@
 package org.fireapp.dao;
 
+import org.fireapp.model.BasicStation;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
-import org.fireapp.model.station.BasicStation;
 
 /**
  * An instance of this class is used to access station objects

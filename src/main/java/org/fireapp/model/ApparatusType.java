@@ -1,4 +1,4 @@
-package org.fireapp.model.apparatus;
+package org.fireapp.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,12 +1,12 @@
-package org.fireapp.service.information;
+package org.fireapp.service;
 
 import java.util.List;
 
 import org.fireapp.dao.ApparatusDao;
 import org.fireapp.dao.BasicStationDao;
 import org.fireapp.dao.FullStationDao;
-import org.fireapp.model.station.BasicStation;
-import org.fireapp.model.station.FullStation;
+import org.fireapp.model.BasicStation;
+import org.fireapp.model.FullStation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
