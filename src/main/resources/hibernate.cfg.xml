@@ -14,5 +14,6 @@
         <mapping class="org.fireapp.model.FullStation"/>
         <mapping class="org.fireapp.model.Apparatus"/>
         <mapping class="org.fireapp.model.ApparatusType"/>
+        <mapping class="org.fireapp.model.BasicDepartment"/>
     </session-factory>
 </hibernate-configuration>
