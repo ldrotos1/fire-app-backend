@@ -2,7 +2,6 @@ package org.fireapp.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -18,12 +17,14 @@ import javax.persistence.Table;
 public class ApparatusType {
 
 	@Id
-	@GeneratedValue
 	@Column( name = "apparatus_type_id" )
 	private Integer apparatusTypeId;
 	
 	@Column( name = "name" )
 	private String name;
+	
+	@Column( name = "category" )
+	private String category;
 	
 	@Column( name = "image" )
 	private String image;
@@ -45,6 +46,14 @@ public class ApparatusType {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public String getImage() {

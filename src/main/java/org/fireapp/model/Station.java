@@ -2,12 +2,14 @@ package org.fireapp.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 /**
   * An entity class that provides a complete representation 
@@ -18,10 +20,9 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table( name = "station" )
-public class FullStation {
+public class Station {
 
 	@Id
-	@GeneratedValue
 	@Column( name = "station_id" )
 	private Integer stationId;
 	
@@ -61,10 +62,11 @@ public class FullStation {
 	@Column(name = "lon")
 	private Double lon;
 	
-	@Transient
+	@OneToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+	@JoinColumn( name = "station_id" )
 	private List<Apparatus> apparatus;
 	
-	public FullStation() {
+	public Station() {
 		super();
 	}
 

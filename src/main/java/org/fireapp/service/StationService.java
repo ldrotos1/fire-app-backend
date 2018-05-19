@@ -2,11 +2,10 @@ package org.fireapp.service;
 
 import java.util.List;
 
-import org.fireapp.dao.ApparatusDao;
-import org.fireapp.dao.BasicStationDao;
-import org.fireapp.dao.FullStationDao;
-import org.fireapp.model.BasicStation;
-import org.fireapp.model.FullStation;
+import org.fireapp.dao.StationLiteLocationDao;
+import org.fireapp.dao.StationDao;
+import org.fireapp.model.StationLiteLocation;
+import org.fireapp.model.Station;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +20,10 @@ import org.springframework.stereotype.Service;
 public class StationService {
 
 	@Autowired
-	private BasicStationDao basicStationDao;
-	
+	private StationDao stationDao;
+
 	@Autowired
-	private FullStationDao fullStationDao;
-	
-	@Autowired
-	private ApparatusDao apparatusDao;
+	private StationLiteLocationDao stationLiteLocationDao;
 	
 	public StationService() {
 		// Empty body
@@ -38,9 +34,9 @@ public class StationService {
 	 * 
 	 * @return The list of fire stations
 	 */
-	public List<BasicStation> getAllStations() {
+	public List<StationLiteLocation> getAllStations() {
 		
-		return basicStationDao.findAllStations();
+		return stationLiteLocationDao.findAllStations();
 	}
 	
 	/**
@@ -49,11 +45,10 @@ public class StationService {
 	 * @param id The station ID
 	 * @return The station record
 	 */
-	public FullStation getStation( Integer id ) {
+	public Station getStation( Integer id ) {
 		
-		FullStation station = fullStationDao.getStation( id );
-		station.setApparatus( apparatusDao.getApparatusAssignedToStation( station.getDesignator() ) );
-		
+		Station station = stationDao.getStation( id );
+
 		return station;
 	}
 }

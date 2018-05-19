@@ -3,7 +3,6 @@ package org.fireapp.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,16 +21,15 @@ import javax.persistence.ForeignKey;
 public class Apparatus {
 
 	@Id
-	@GeneratedValue
 	@Column( name = "apparatus_id" )
 	private Integer apparatusId;
 	
-	@Column( name = "unit_designator" )
+	@Column( name = "unit_designator", unique = true )
 	private String unitDesignator;
 	
-	@Column( name = "station_designator" )
-	private Integer stationDesignator;
-	
+	@Column( name = "station_id" )
+	private Integer stationId;
+
 	@Column( name = "is_reserve" )
 	private Boolean isReserve;
 	
@@ -60,12 +58,12 @@ public class Apparatus {
 		this.unitDesignator = unitDesignator;
 	}
 
-	public Integer getStation() {
-		return stationDesignator;
+	public Integer getStationId() {
+		return stationId;
 	}
 
-	public void setStation(Integer stationDesignator) {
-		this.stationDesignator = stationDesignator;
+	public void setStationId(Integer stationId) {
+		this.stationId = stationId;
 	}
 
 	public Boolean getIsReserve() {
@@ -74,14 +72,6 @@ public class Apparatus {
 
 	public void setIsReserve(Boolean isReserve) {
 		this.isReserve = isReserve;
-	}
-
-	public Integer getStationDesignator() {
-		return stationDesignator;
-	}
-
-	public void setStationDesignator(Integer stationDesignator) {
-		this.stationDesignator = stationDesignator;
 	}
 
 	public ApparatusType getApparatusType() {

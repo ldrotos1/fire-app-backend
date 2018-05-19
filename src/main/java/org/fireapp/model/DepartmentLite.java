@@ -2,7 +2,6 @@ package org.fireapp.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,17 +14,16 @@ import javax.persistence.Table;
  */
 @Entity
 @Table( name = "department" )
-public class BasicDepartment {
+public class DepartmentLite {
 
 	@Id
-	@GeneratedValue
 	@Column( name = "department_id" )
 	private Integer departmentId;
 	
 	@Column( name = "name" )
 	private String name;
 	
-	public BasicDepartment() {
+	public DepartmentLite() {
 		// Empty body
 	}
 

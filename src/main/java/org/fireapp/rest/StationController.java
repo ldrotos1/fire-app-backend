@@ -2,8 +2,8 @@ package org.fireapp.rest;
 
 import java.util.List;
 
-import org.fireapp.model.BasicStation;
-import org.fireapp.model.FullStation;
+import org.fireapp.model.StationLiteLocation;
+import org.fireapp.model.Station;
 import org.fireapp.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,13 +19,13 @@ public class StationController {
 	StationService stationService;
 	
 	@RequestMapping( value = "/all", method = RequestMethod.GET, produces = "application/json" )
-    public List<BasicStation> getAllStations() {
+    public List<StationLiteLocation> getAllStations() {
         
 		return stationService.getAllStations();
     }
 	
 	@RequestMapping( value = "/byid", method = RequestMethod.GET, produces = "application/json" )
-	public FullStation getStation( @RequestParam( "id" ) Integer id ) {
+	public Station getStation( @RequestParam( "id" ) Integer id ) {
 		
 		return stationService.getStation( id );
 	}

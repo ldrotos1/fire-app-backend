@@ -2,23 +2,23 @@ package org.fireapp.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * An entity class that provides a simplified representation 
- * of a fire station 
+ * of a fire station that includes the number of apparatus 
+ * assigned to it. 
  * 
  * @author Louis Drotos
  *
  */
 @Entity
 @Table( name = "station" )
-public class BasicStation {
+public class StationLiteUnitCount {
 
 	@Id
-	@GeneratedValue
 	@Column( name = "station_id" )
 	private Integer stationId;
 	
@@ -28,17 +28,17 @@ public class BasicStation {
 	@Column( name = "station_designator" )
 	private Integer designator;
 	
+	@Column( name = "department_id" )
+	private Integer departmentId;
+	
 	@Column( name = "name" )
 	private String name;
 	
-	@Column(name = "lat")
-	private Double lat;
+	@Transient
+	private Long unitCount;
 	
-	@Column(name = "lon")
-	private Double lon;
-	
-	public BasicStation() {
-		// Empty body
+	public StationLiteUnitCount() {
+		//Empty body
 	}
 
 	public Integer getStationId() {
@@ -53,16 +53,24 @@ public class BasicStation {
 		return number;
 	}
 
-	public void setDesignator(Integer designator) {
-		this.designator = designator;
+	public void setNumber(Integer number) {
+		this.number = number;
 	}
-	
+
 	public Integer getDesignator() {
 		return designator;
 	}
 
-	public void setNumber(Integer number) {
-		this.number = number;
+	public void setDesignator(Integer designator) {
+		this.designator = designator;
+	}
+
+	public Integer getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(Integer departmentId) {
+		this.departmentId = departmentId;
 	}
 
 	public String getName() {
@@ -72,20 +80,13 @@ public class BasicStation {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public Long getUnitCount() {
+		return unitCount;
+	}
+
+	public void setUnitCount(Long unitCount) {
+		this.unitCount = unitCount;
+	}
 	
-	public Double getLat() {
-		return lat;
-	}
-
-	public void setLat(Double lat) {
-		this.lat = lat;
-	}
-
-	public Double getLon() {
-		return lon;
-	}
-
-	public void setLon(Double lon) {
-		this.lon = lon;
-	}
 }

@@ -2,8 +2,10 @@ package org.fireapp.service;
 
 import java.util.List;
 
-import org.fireapp.dao.BasicDepartmentDao;
-import org.fireapp.model.BasicDepartment;
+import org.fireapp.dao.DepartmentDao;
+import org.fireapp.dao.DepartmentLiteDao;
+import org.fireapp.model.Department;
+import org.fireapp.model.DepartmentLite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +20,10 @@ import org.springframework.stereotype.Service;
 public class DepartmentService {
 
 	@Autowired
-	private BasicDepartmentDao basicDepartmentDao;
+	private DepartmentLiteDao departmentLiteDao;
+	
+	@Autowired
+	private DepartmentDao departmentDao;
 	
 	public DepartmentService() {
 		// Empty body
@@ -30,8 +35,19 @@ public class DepartmentService {
 	 * 
 	 * @return The list of all departments
 	 */
-	public List<BasicDepartment> getAllDeparments() {
+	public List<DepartmentLite> getAllDeparments() {
 		
-		return basicDepartmentDao.findAllDepartments();
+		return departmentLiteDao.findAllDepartments();
+	}
+	
+	/**
+	 * Returns an object representing the specified fire department
+	 * 
+	 * @param id The department ID
+	 * @return The department information
+	 */
+	public Department getDepartmentInfo( Integer id ) {
+		
+		return departmentDao.getDepartment( id );
 	}
 }

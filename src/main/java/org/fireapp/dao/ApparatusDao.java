@@ -25,4 +25,16 @@ public class ApparatusDao extends BaseDao<Apparatus>  {
 
 		return this.query( "FROM Apparatus a WHERE a.stationDesignator = " + designator );
 	}
+	
+	/**
+	 * Returns the number of apparatus assigned to the specified
+	 * fire station
+	 * 
+	 * @param stationId The fire station ID
+	 * @return The number of assigned apparatus
+	 */
+	public Long getApparatusCount( Integer stationId ) {
+		
+		return this.count( "SELECT COUNT(*) FROM Apparatus a WHERE a.stationId = " + stationId );
+	}
 }

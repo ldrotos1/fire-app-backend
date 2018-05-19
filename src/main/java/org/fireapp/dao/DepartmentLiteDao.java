@@ -2,7 +2,7 @@ package org.fireapp.dao;
 
 import java.util.List;
 
-import org.fireapp.model.BasicDepartment;
+import org.fireapp.model.DepartmentLite;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -12,14 +12,14 @@ import org.springframework.stereotype.Repository;
  * @author Louis Drotos
  *
  */
-@Repository( "basicDepartmentDao" )
-public class BasicDepartmentDao extends BaseDao<BasicDepartment> {
+@Repository( "departmentLiteDao" )
+public class DepartmentLiteDao extends BaseDao<DepartmentLite> {
 
 	/**
 	 * Gets a list collection of all departments
 	 */
-	public List<BasicDepartment> findAllDepartments() {
+	public List<DepartmentLite> findAllDepartments() {
 
-		return this.query( "FROM BasicDepartment" );
+		return this.query( "FROM DepartmentLite" );
 	}
 }

@@ -1,6 +1,6 @@
 package org.fireapp.dao;
 
-import org.fireapp.model.BasicStation;
+import org.fireapp.model.StationLiteLocation;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,14 +12,14 @@ import java.util.List;
  * @author Louis Drotos
  *
  */
-@Repository( "basicStationDao" )
-public class BasicStationDao extends BaseDao<BasicStation> {
+@Repository( "stationLiteLocationDao" )
+public class StationLiteLocationDao extends BaseDao<StationLiteLocation> {
 
 	/**
 	 * Gets a list collection of all stations
 	 */
-	public List<BasicStation> findAllStations() {
+	public List<StationLiteLocation> findAllStations() {
 
-		return this.query( "FROM BasicStation" );
+		return this.query( "FROM StationLiteLocation" );
 	}
 }

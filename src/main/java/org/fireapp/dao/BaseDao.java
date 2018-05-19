@@ -22,7 +22,7 @@ public abstract class BaseDao<T> {
 	protected HibernateUtils hibernateUtils;
 	
 	@SuppressWarnings("unchecked")
-	protected List<T> query( String query ) {
+	protected List<T> query( String queryStr ) {
 		
 		Session session = this.hibernateUtils.getSession();
 		Transaction tx = null;
@@ -31,7 +31,7 @@ public abstract class BaseDao<T> {
 		try {
 			
 			tx = session.beginTransaction();
-			list = ( List<T> ) session.createQuery( query ).list();
+			list = ( List<T> ) session.createQuery( queryStr ).list();
 			tx.commit();
 			
 			return list;
@@ -52,7 +52,7 @@ public abstract class BaseDao<T> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	protected T get( String query ) {
+	protected T get( String queryStr ) {
 		
 		Session session = this.hibernateUtils.getSession();
 		Transaction tx = null;
@@ -61,10 +61,69 @@ public abstract class BaseDao<T> {
 		try {
 			
 			tx = session.beginTransaction();
-			item = ( T ) session.createQuery( query ).getSingleResult();
+			item = ( T ) session.createQuery( queryStr ).getSingleResult();
 			tx.commit();
 			
 			return item;
+		}
+		catch( Exception e ) {
+			
+			if ( tx != null ) {
+				
+				tx.rollback();
+			}
+			
+			throw e;
+		}
+		finally {
+			
+			session.close();
+		}
+	}
+	
+	protected Long count( String queryStr ) {
+
+		Session session = this.hibernateUtils.getSession();
+		Transaction tx = null;
+		Long count;
+		
+		try {
+			
+			tx = session.beginTransaction();
+			count = (Long) session.createQuery( queryStr ).getSingleResult();
+			tx.commit();
+			
+			return count;
+		}
+		catch( Exception e ) {
+			
+			if ( tx != null ) {
+				
+				tx.rollback();
+			}
+			
+			throw e;
+		}
+		finally {
+			
+			session.close();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	protected List<Object[]> nativeQuery( String queryStr ) {
+		
+		Session session = this.hibernateUtils.getSession();
+		Transaction tx = null;
+		List<Object[]> results;
+		
+		try {
+			
+			tx = session.beginTransaction();
+			results = session.createNativeQuery( queryStr ).getResultList();
+			tx.commit();
+			
+			return results;
 		}
 		catch( Exception e ) {
 			
