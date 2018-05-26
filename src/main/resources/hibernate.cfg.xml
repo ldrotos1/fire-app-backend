@@ -15,6 +15,7 @@
         <mapping class="org.fireapp.model.Station"/>
         <mapping class="org.fireapp.model.Apparatus"/>
         <mapping class="org.fireapp.model.ApparatusType"/>
+        <mapping class="org.fireapp.model.ApparatusTypeLite"/>
         <mapping class="org.fireapp.model.DepartmentLite"/>
         <mapping class="org.fireapp.model.Department"/>
     </session-factory>

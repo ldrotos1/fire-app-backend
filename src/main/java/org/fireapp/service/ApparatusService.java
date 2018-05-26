@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.fireapp.dao.ApparatusDao;
 import org.fireapp.dao.ApparatusTypeDao;
+import org.fireapp.dao.ApparatusTypeLiteDao;
 import org.fireapp.model.Apparatus;
 import org.fireapp.model.ApparatusType;
+import org.fireapp.model.ApparatusTypeLite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,9 @@ public class ApparatusService {
 	@Autowired
 	private ApparatusTypeDao apparatusTypeDao;
 	
+	@Autowired
+	private ApparatusTypeLiteDao apparatusTypeLiteDao;
+	
 	/**
 	 * Returns a list of all fire apparatus assigned to
 	 * the specified station
@@ -42,8 +47,8 @@ public class ApparatusService {
 	 * 
 	 * @return The list of apparatus types
 	 */
-	public List<ApparatusType> getApparatusTypes() {
+	public List<ApparatusTypeLite> getApparatusTypes() {
 		
-		return apparatusTypeDao.getApparatusTypes();
+		return apparatusTypeLiteDao.getApparatusTypes();
 	}
 }
