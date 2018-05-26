@@ -8,6 +8,7 @@ import org.fireapp.dao.DepartmentDao;
 import org.fireapp.dao.DepartmentLiteDao;
 import org.fireapp.model.Department;
 import org.fireapp.model.DepartmentLite;
+import org.fireapp.model.StationLiteUnitCount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class DepartmentService {
 
+	@Autowired
+	private StationService stationService;
+	
+	@Autowired
+	private ApparatusService apparatusService;
+	
 	@Autowired
 	private DepartmentLiteDao departmentLiteDao;
 	
@@ -50,7 +57,19 @@ public class DepartmentService {
 	 */
 	public Department getDepartmentInfo( Integer id ) {
 		
-		return departmentDao.getDepartment( id );
+		// Gets the department object
+		Department dept = departmentDao.getDepartment( id );
+		
+		// Gets the apparatus count for each station
+		for( StationLiteUnitCount station : dept.getStations() ) {
+			
+			station.setUnitCount( stationService.getApparatusCount( station.getStationId() ) );
+		}
+		
+		// Gets and sets the apparatus category count map 
+		dept.setUnitTypeMap( apparatusService.getCategoryCountMap( id ) );
+		
+		return dept;
 	}
 	
 	/**

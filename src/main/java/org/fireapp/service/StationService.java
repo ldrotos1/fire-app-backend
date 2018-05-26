@@ -49,9 +49,19 @@ public class StationService {
 	 */
 	public Station getStation( Integer id ) {
 		
-		Station station = stationDao.getStation( id );
-
-		return station;
+		return stationDao.getStation( id );
+	}
+	
+	/**
+	 * Returns the number of apparatus assigned to the
+	 * specified station
+	 * 
+	 * @param id The station ID
+	 * @return The number of assigned apparatus
+	 */
+	public Long getApparatusCount( Integer id ) {
+		
+		return stationDao.getApparatusCount( id );
 	}
 	
 	/**

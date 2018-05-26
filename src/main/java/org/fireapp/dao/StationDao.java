@@ -23,6 +23,18 @@ public class StationDao extends BaseDao<Station> {
 	}
 	
 	/**
+	 * Returns the number of apparatus assigned to the
+	 * specified station
+	 * 
+	 * @param id The station ID
+	 * @return The number of assigned apparatus
+	 */
+	public Long getApparatusCount( Integer id ) {
+		
+		return this.count( "SELECT COUNT(*) FROM Apparatus a WHERE a.stationId = " + id );
+	}
+	
+	/**
 	 * Returns a map collection of all station IDs and the number 
 	 * of apparatus of the specified type assigned to each station
 	 * 
