@@ -1,8 +1,9 @@
 package org.fireapp.dao;
 
-import java.util.List;
-
 import org.fireapp.model.ApparatusType;
+import org.fireapp.service.DepartmentService;
+import org.fireapp.service.StationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,14 +15,29 @@ import org.springframework.stereotype.Repository;
  */
 @Repository( "apparatusTypeDao" )
 public class ApparatusTypeDao extends BaseDao<ApparatusType> {
-
+	
+	@Autowired
+	DepartmentService departmentService;
+	
+	@Autowired
+	StationService stationService;
+	
 	/**
-	 * Gets a list of all apparatus types
+	 * Returns the apparatus type information object for the
+	 * specified apparatus type
 	 * 
-	 * @return The list of apparatus types
+	 * @param id The apparatus type ID
+	 * @return The apparatus type object
 	 */
-	public List<ApparatusType> getApparatusTypes() {
+	public ApparatusType getApparatusType( Integer id ) {
 		
-		return this.query( "FROM ApparatusType" );
+		// Gets the apparatus type object
+		ApparatusType appType = this.get( "FROM ApparatusType a WHERE a.apparatusTypeId = " + id );
+		
+		// Gets and sets the map collections
+		appType.setStationMap( stationService.getStationApparatusTypeMap( id ) );
+		appType.setDepartMap( departmentService.getDeptApparatusTypeMap( id ) );
+		
+		return appType;
 	}
 }

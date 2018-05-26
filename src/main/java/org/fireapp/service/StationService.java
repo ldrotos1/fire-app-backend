@@ -1,6 +1,8 @@
 package org.fireapp.service;
 
+import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 
 import org.fireapp.dao.StationLiteLocationDao;
 import org.fireapp.dao.StationDao;
@@ -50,5 +52,17 @@ public class StationService {
 		Station station = stationDao.getStation( id );
 
 		return station;
+	}
+	
+	/**
+	 * Returns a map collection of all station IDs and the number 
+	 * of apparatus of the specified type assigned to each station
+	 * 
+	 * @param apparatusTypeId The apparatus type ID
+	 * @return The map collection
+	 */
+	public Map<Integer,BigInteger> getStationApparatusTypeMap( Integer apparatusTypeId ) {
+		
+		return stationDao.getStationApparatusTypeMap( apparatusTypeId );
 	}
 }

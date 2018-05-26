@@ -1,9 +1,13 @@
 package org.fireapp.model;
 
+import java.math.BigInteger;
+import java.util.Map;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * An entity class that provides a representation of 
@@ -32,6 +36,12 @@ public class ApparatusType {
 	@Column( name = "description" )
 	private String description;
 
+	@Transient
+	private Map<Integer,BigInteger> departMap;
+	
+	@Transient
+	private Map<Integer,BigInteger> stationMap;
+	
 	public Integer getApparatusTypeId() {
 		return apparatusTypeId;
 	}
@@ -70,5 +80,21 @@ public class ApparatusType {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Map<Integer, BigInteger> getDepartMap() {
+		return departMap;
+	}
+
+	public void setDepartMap(Map<Integer, BigInteger> departMap) {
+		this.departMap = departMap;
+	}
+
+	public Map<Integer, BigInteger> getStationMap() {
+		return stationMap;
+	}
+
+	public void setStationMap(Map<Integer, BigInteger> stationMap) {
+		this.stationMap = stationMap;
 	}
 }

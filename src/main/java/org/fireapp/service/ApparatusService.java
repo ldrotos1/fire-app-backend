@@ -43,6 +43,17 @@ public class ApparatusService {
 	}
 	
 	/**
+	 * Returns the specified apparatus type 
+	 * 
+	 * @param id The apparatus type ID
+	 * @return The apparatus type object
+	 */
+	public ApparatusType getApparatusType( Integer id ) {
+		
+		return apparatusTypeDao.getApparatusType( id );
+	}
+	
+	/**
 	 * Returns a list of all fire apparatus types
 	 * 
 	 * @return The list of apparatus types
