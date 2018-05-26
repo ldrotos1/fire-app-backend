@@ -88,5 +88,31 @@ public class StationLiteUnitCount {
 	public void setUnitCount(Long unitCount) {
 		this.unitCount = unitCount;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((designator == null) ? 0 : designator.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		StationLiteUnitCount other = (StationLiteUnitCount) obj;
+		if (designator == null) {
+			if (other.designator != null)
+				return false;
+		} else if (!designator.equals(other.designator))
+			return false;
+		return true;
+	}
 }

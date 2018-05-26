@@ -81,4 +81,31 @@ public class Apparatus {
 	public void setApparatusType(ApparatusType apparatusType) {
 		this.apparatusType = apparatusType;
 	}
+
+	@Override
+	public int hashCode() {
+		
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((unitDesignator == null) ? 0 : unitDesignator.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Apparatus other = (Apparatus) obj;
+		if (unitDesignator == null) {
+			if (other.unitDesignator != null)
+				return false;
+		} else if (!unitDesignator.equals(other.unitDesignator))
+			return false;
+		return true;
+	}
 }
