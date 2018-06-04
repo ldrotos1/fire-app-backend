@@ -1,5 +1,6 @@
 package org.fireapp.model.incident;
 
+import javax.persistence.Entity;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -10,6 +11,7 @@ import javax.validation.constraints.NotNull;
  * @author Louis Drotos
  *
  */
+@Entity
 public class StructureFireIncident extends Incident {
 
 	@Min( value = 1, message = "Minimum alarm number is 1" )

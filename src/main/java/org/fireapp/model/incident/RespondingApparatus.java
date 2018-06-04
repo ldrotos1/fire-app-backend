@@ -31,9 +31,6 @@ public class RespondingApparatus {
 	@Column( name = "unit_designator", unique = true )
 	private String unitDesignator;
 	
-	@Column( name = "station_id" )
-	private Integer stationId;
-	
 	@ManyToOne( cascade = CascadeType.ALL )
 	@JoinColumn( name = "apparatus_type_id", foreignKey = 
 		@ForeignKey( name = "apparatus_apparatus_type_id_fkey" ) )
@@ -68,14 +65,6 @@ public class RespondingApparatus {
 
 	public void setUnitDesignator(String unitDesignator) {
 		this.unitDesignator = unitDesignator;
-	}
-
-	public Integer getStationId() {
-		return stationId;
-	}
-
-	public void setStationId(Integer stationId) {
-		this.stationId = stationId;
 	}
 
 	public ApparatusTypeLite getApparatusType() {
@@ -115,7 +104,7 @@ public class RespondingApparatus {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((apparatusId == null) ? 0 : apparatusId.hashCode());
-		result = prime * result + ((stationId == null) ? 0 : stationId.hashCode());
+		result = prime * result + ((station == null) ? 0 : station.hashCode());
 		return result;
 	}
 
@@ -133,10 +122,10 @@ public class RespondingApparatus {
 				return false;
 		} else if (!apparatusId.equals(other.apparatusId))
 			return false;
-		if (stationId == null) {
-			if (other.stationId != null)
+		if (station == null) {
+			if (other.station != null)
 				return false;
-		} else if (!stationId.equals(other.stationId))
+		} else if (!station.equals(other.station))
 			return false;
 		return true;
 	}
