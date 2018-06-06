@@ -38,6 +38,13 @@ public class MedicalEmergencyController {
 		binder.addValidators( incidentValidator );
 	}
 	
+	/**
+	 * Simulates the fire department response to a medical emergency
+	 * 
+	 * @param incident The incident 
+	 * @param result The list of validation errors
+	 * @return The incident response
+	 */
 	@RequestMapping( value = "/incident", method = RequestMethod.POST, produces = "application/json" )
 	public ResponseEntity<Object> simulateMedicalEmergencyResponse( 
 			@Validated @RequestBody MedicalEmergencyIncident incident, BindingResult result ) {

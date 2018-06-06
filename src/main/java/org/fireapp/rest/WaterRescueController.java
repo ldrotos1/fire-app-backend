@@ -38,6 +38,13 @@ public class WaterRescueController {
 		binder.addValidators( incidentValidator );
 	}
 	
+	/**
+	 * Simulates the fire department response to a water rescue incident
+	 * 
+	 * @param incident The incident 
+	 * @param result The list of validation errors
+	 * @return The incident response
+	 */
 	@RequestMapping( value = "/incident", method = RequestMethod.POST, produces = "application/json" )
 	public ResponseEntity<Object> simulateWaterRescueResponse( 
 			@Validated @RequestBody WaterRescueIncident incident, BindingResult result ) {

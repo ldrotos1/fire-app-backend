@@ -38,6 +38,13 @@ public class VehicleAccidentController {
 		binder.addValidators( incidentValidator );
 	}
 	
+	/**
+	 * Simulates the fire department response to a vehicle accident
+	 * 
+	 * @param incident The incident 
+	 * @param result The list of validation errors
+	 * @return The incident response
+	 */
 	@RequestMapping( value = "/incident", method = RequestMethod.POST, produces = "application/json" )
 	public ResponseEntity<Object> simulateVehicleAccidentResponse( 
 			@Validated @RequestBody VehicleAccidentIncident incident, BindingResult result ) {

@@ -38,6 +38,13 @@ public class StructureFireController {
 		binder.addValidators( incidentValidator );
 	}
 	
+	/**
+	 * Simulates the fire department response to a structure fire
+	 * 
+	 * @param incident The incident 
+	 * @param result The list of validation errors
+	 * @return The incident response
+	 */
 	@RequestMapping( value = "/incident", method = RequestMethod.POST, produces = "application/json" )
 	public ResponseEntity<Object> simulateStructureFireResponse( 
 			@Validated @RequestBody StructureFireIncident incidentFire, BindingResult result ) {

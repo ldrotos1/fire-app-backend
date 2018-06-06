@@ -38,6 +38,13 @@ public class MassCasualtyController {
 		binder.addValidators( incidentValidator );
 	}
 	
+	/**
+	 * Simulates the fire department response to a mass casualty incident
+	 * 
+	 * @param incident The incident 
+	 * @param result The list of validation errors
+	 * @return The incident response
+	 */
 	@RequestMapping( value = "/incident", method = RequestMethod.POST, produces = "application/json" )
 	public ResponseEntity<Object> simulateMassCasualtyResponse( 
 			@Validated @RequestBody MassCasualtyIncident incident, BindingResult result ) {
