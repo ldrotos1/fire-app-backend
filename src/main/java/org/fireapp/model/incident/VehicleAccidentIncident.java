@@ -1,9 +1,5 @@
 package org.fireapp.model.incident;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-
 /**
  * Represents a vehicle accident incident 
  * 
@@ -12,20 +8,9 @@ import javax.validation.constraints.NotNull;
  */
 public class VehicleAccidentIncident extends Incident {
 
-	@Min( value = 0, message = "Minimum number of injuries is 0" )
-	@Max( value = 50, message = "Maximum number of injuries is 50" )
-	@NotNull( message = "Must provide the number of injuries" )
 	private Integer injuries;
-	
-	@Min( value = 1, message = "Minimum number of 1 vehicle in accident" )
-	@Max( value = 1, message = "Maximum number of 5 vehicle in accident" )
-	@NotNull( message = "Must provide the number of vehicles in accident" )
 	private Integer vehicles;
-	
-	@NotNull( message = "Hazmat must not be null" )
 	private Boolean hazmat;
-	
-	@NotNull( message = "Entrapment must not be null" )
 	private Boolean entrapment;
 
 	public Integer getInjuries() {

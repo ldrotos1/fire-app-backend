@@ -1,8 +1,5 @@
 package org.fireapp.model.incident;
 
-import javax.validation.constraints.NotNull;
-
-
 /**
  * Base class that represents an generic emergency incident
  * 
@@ -11,10 +8,7 @@ import javax.validation.constraints.NotNull;
  */
 public class Incident {
 
-	@NotNull( message = "Must provide a latitude" )
 	protected Double latitude;
-	
-	@NotNull( message = "Must provide a longitude" )
 	protected Double longitude;
 	
 	public Incident() {

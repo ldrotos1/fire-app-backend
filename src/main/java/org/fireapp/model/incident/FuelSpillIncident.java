@@ -1,8 +1,5 @@
 package org.fireapp.model.incident;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
 /**
  * Represents a fuel spill incident
  * 
@@ -11,11 +8,7 @@ import javax.validation.constraints.Pattern;
  */
 public class FuelSpillIncident extends Incident {
 
-	@Pattern( regexp = "small|large", message = "Spill size must be 'small' or 'large'" )
-	@NotNull( message = "Spill size must be 'small' or 'large'" )
 	private String spillSize;
-	
-	@NotNull( message = "Must provide a value for Ignited" )
 	private Boolean ignited;
 	
 	public FuelSpillIncident() {
