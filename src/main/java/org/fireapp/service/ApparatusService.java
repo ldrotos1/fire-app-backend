@@ -1,12 +1,12 @@
 package org.fireapp.service;
 
-import java.math.BigInteger;
 import java.util.List;
-import java.util.Map;
 
 import org.fireapp.dao.ApparatusDao;
 import org.fireapp.dao.ApparatusTypeDao;
 import org.fireapp.dao.ApparatusTypeLiteDao;
+import org.fireapp.dao.DepartmentDao;
+import org.fireapp.dao.StationDao;
 import org.fireapp.model.Apparatus;
 import org.fireapp.model.ApparatusType;
 import org.fireapp.model.ApparatusTypeLite;
@@ -24,12 +24,6 @@ import org.springframework.stereotype.Service;
 public class ApparatusService {
 
 	@Autowired
-	private DepartmentService departmentService;
-	
-	@Autowired
-	private StationService stationService;
-	
-	@Autowired
 	private ApparatusDao apparatusDao;
 	
 	@Autowired
@@ -37,7 +31,13 @@ public class ApparatusService {
 	
 	@Autowired
 	private ApparatusTypeLiteDao apparatusTypeLiteDao;
+	
+	@Autowired
+	private StationDao stationDao;
 		
+	@Autowired
+	private DepartmentDao departmentDao;
+	
 	/**
 	 * Returns a list of all fire apparatus assigned to
 	 * the specified station
@@ -62,8 +62,8 @@ public class ApparatusService {
 		ApparatusType appType = apparatusTypeDao.getApparatusType( id );
 		
 		// Gets and sets the map collections
-		appType.setStationMap( stationService.getStationApparatusTypeMap( id ) );
-		appType.setDepartMap( departmentService.getDeptApparatusTypeMap( id ) );
+		appType.setStationMap( stationDao.getStationApparatusTypeMap( id ) );
+		appType.setDepartMap( departmentDao.getDeptApparatusTypeMap( id ) );
 		
 		return appType;
 	}
@@ -76,18 +76,5 @@ public class ApparatusService {
 	public List<ApparatusTypeLite> getApparatusTypes() {
 		
 		return apparatusTypeLiteDao.getApparatusTypes();
-	}
-	
-	/**
-	 * Returns a map collection of all apparatus categories and the
-	 * number of apparatus of each category that belong to the 
-	 * specified fire department 
-	 * 
-	 * @param deptId
-	 * @return The map collection
-	 */
-	public Map<String,BigInteger> getCategoryCountMap( Integer deptId ) {
-		
-		return apparatusDao.getCategoryCountMap( deptId );
 	}
 }
