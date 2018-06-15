@@ -41,7 +41,7 @@ public class MassCasIncidentReqValidator extends BaseIncidentReqValidator implem
 				
 				err.rejectValue( "casualties", "Below minimum value" );
 			}
-			else if ( casualties > 50 ) {
+			else if ( casualties > 100 ) {
 				
 				err.rejectValue( "casualties", "Above maximum value" );
 			}

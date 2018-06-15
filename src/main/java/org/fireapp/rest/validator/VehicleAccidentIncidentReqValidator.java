@@ -47,7 +47,7 @@ public class VehicleAccidentIncidentReqValidator extends BaseIncidentReqValidato
 				
 				err.rejectValue( "injuries", "Below minimum value" );
 			}
-			else if ( injuries > 50 ) {
+			else if ( injuries > 4 ) {
 				
 				err.rejectValue( "injuries", "Above maximum value" );
 			}
@@ -56,11 +56,11 @@ public class VehicleAccidentIncidentReqValidator extends BaseIncidentReqValidato
 		// Validates the number of vehicles
 		if ( vehicles != null ) {
 			
-			if ( vehicles < 0 ) {
+			if ( vehicles < 1 ) {
 				
 				err.rejectValue( "vehicles", "Below minimum value" );
 			}
-			else if ( vehicles > 5 ) {
+			else if ( vehicles > 3 ) {
 				
 				err.rejectValue( "vehicles", "Above maximum value" );
 			}
