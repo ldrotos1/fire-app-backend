@@ -1,8 +1,12 @@
 package org.fireapp.rest;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.fireapp.model.incident.IncidentResponse;
 import org.fireapp.model.incident.VehicleAccidentIncident;
 import org.fireapp.rest.validator.VehicleAccidentIncidentReqValidator;
+import org.fireapp.service.BorderService;
 import org.fireapp.service.IncidentRespSimService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,6 +37,9 @@ public class VehicleAccidentController {
 	@Autowired
 	private VehicleAccidentIncidentReqValidator incidentValidator;
 	
+	@Autowired
+	private BorderService borderService;
+	
 	@InitBinder
 	protected void initBinderVehAcc( WebDataBinder binder ) {
 		binder.addValidators( incidentValidator );
@@ -53,7 +60,17 @@ public class VehicleAccidentController {
 		if ( result.hasErrors() ) {
 			
 			return new ResponseEntity<Object>( result.getFieldErrors(), HttpStatus.BAD_REQUEST );
-		}	
+		}
+		
+		// Ensure the location is within the area of interest
+		Boolean locationValid = this.borderService.isLocationWithAoi( incident.getLatitude(), incident.getLongitude() );
+		
+		if ( !locationValid ) {
+			
+			Map<String,String> resp = new HashMap<String,String>();
+			resp.put( "message", "Location is outside of simulator area." );
+			return new ResponseEntity<Object>( resp, HttpStatus.BAD_REQUEST ); 
+		}
 		
 		// Simulates the response
 		IncidentResponse resp = incidentRespSimService.simulateVehicleAccidentResponse( incident );

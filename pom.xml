@@ -9,6 +9,7 @@
   <url>http://maven.apache.org</url>
   <properties>
      <springframework.version>4.3.0.RELEASE</springframework.version>
+     <hibernate.version>5.2.16.Final</hibernate.version>
      <jackson.library>2.7.5</jackson.library>
      <maven.compiler.source>1.8</maven.compiler.source>
      <maven.compiler.target>1.8</maven.compiler.target>
@@ -53,6 +54,12 @@
 	</dependency>
         
     <dependency>
+    	<groupId>org.slf4j</groupId>
+    	<artifactId>slf4j-simple</artifactId>
+    	<version>1.7.6</version>
+	</dependency>
+        
+    <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-databind</artifactId>
         <version>2.7.5</version>
@@ -61,7 +68,12 @@
   	<dependency>
     	<groupId>org.hibernate</groupId>
     	<artifactId>hibernate-core</artifactId>
-    	<version>5.2.16.Final</version>
+    	<version>${hibernate.version}</version>
+	</dependency>
+	<dependency>
+    	<groupId>org.hibernate</groupId>
+    	<artifactId>hibernate-spatial</artifactId>
+    	<version>${hibernate.version}</version>
 	</dependency>
     <dependency>
   	   	<groupId>org.postgresql</groupId>

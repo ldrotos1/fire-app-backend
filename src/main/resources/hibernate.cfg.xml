@@ -8,7 +8,7 @@
         <property name="hibernate.connection.password">password</property>
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/novafireapp</property>
         <property name="hibernate.connection.username">fireapp</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.dialect">org.hibernate.spatial.dialect.postgis.PostgisDialect</property>
         <property name="hibernate.show_sql">true</property>
         <mapping class="org.fireapp.model.StationLiteLocation"/>
         <mapping class="org.fireapp.model.StationLiteUnitCount"/>
@@ -19,6 +19,7 @@
         <mapping class="org.fireapp.model.ApparatusTypeLite"/>
         <mapping class="org.fireapp.model.DepartmentLite"/>
         <mapping class="org.fireapp.model.Department"/>
+        <mapping class="org.fireapp.model.Border"/>
         <mapping class="org.fireapp.model.incident.RespondingApparatus"/>
     </session-factory>
 </hibernate-configuration>

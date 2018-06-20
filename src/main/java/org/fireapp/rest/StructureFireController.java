@@ -1,8 +1,12 @@
 package org.fireapp.rest;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.fireapp.model.incident.IncidentResponse;
 import org.fireapp.model.incident.StructureFireIncident;
 import org.fireapp.rest.validator.StructureFireIncidentReqValidator;
+import org.fireapp.service.BorderService;
 import org.fireapp.service.IncidentRespSimService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,6 +37,9 @@ public class StructureFireController {
 	@Autowired
 	private StructureFireIncidentReqValidator incidentValidator;
 	
+	@Autowired
+	private BorderService borderService;
+	
 	@InitBinder
 	protected void initBinderFire( WebDataBinder binder ) {
 		binder.addValidators( incidentValidator );
@@ -47,7 +54,7 @@ public class StructureFireController {
 	 */
 	@RequestMapping( value = "/incident", method = RequestMethod.POST, produces = "application/json" )
 	public ResponseEntity<Object> simulateStructureFireResponse( 
-			@Validated @RequestBody StructureFireIncident incidentFire, BindingResult result ) {
+			@Validated @RequestBody StructureFireIncident incident, BindingResult result ) {
 		
 		// Checks for request errors error
 		if ( result.hasErrors() ) {
@@ -55,8 +62,18 @@ public class StructureFireController {
 			return new ResponseEntity<Object>( result.getFieldErrors(), HttpStatus.BAD_REQUEST );
 		}
 		
+		// Ensure the location is within the area of interest
+		Boolean locationValid = this.borderService.isLocationWithAoi( incident.getLatitude(), incident.getLongitude() );
+		
+		if ( !locationValid ) {
+			
+			Map<String,String> resp = new HashMap<String,String>();
+			resp.put( "message", "Location is outside of simulator area." );
+			return new ResponseEntity<Object>( resp, HttpStatus.BAD_REQUEST ); 
+		}
+		
 		// Simulates the response
-		IncidentResponse resp = incidentRespSimService.simulateStructureFireResponse( incidentFire );
+		IncidentResponse resp = incidentRespSimService.simulateStructureFireResponse( incident );
 		return new ResponseEntity<Object>( resp, HttpStatus.OK );
 	}
 }
