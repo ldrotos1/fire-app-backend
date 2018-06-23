@@ -1,12 +1,14 @@
 package org.fireapp.service;
 
 import org.fireapp.model.incident.FuelSpillIncident;
+import org.fireapp.model.incident.IncidentRequirements;
 import org.fireapp.model.incident.IncidentResponse;
 import org.fireapp.model.incident.MassCasualtyIncident;
 import org.fireapp.model.incident.MedicalEmergencyIncident;
 import org.fireapp.model.incident.StructureFireIncident;
 import org.fireapp.model.incident.VehicleAccidentIncident;
 import org.fireapp.model.incident.WaterRescueIncident;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,8 +19,11 @@ import org.springframework.stereotype.Service;
  *
  */
 @Service
-public class IncidentRespSimService {
+public class IncidentSimulatorService {
 
+	@Autowired
+	private ResponseRequirementsService respReqService;
+	
 	/**
 	 * Simulates the emergency services response to a structure fire
 	 * 
@@ -26,6 +31,8 @@ public class IncidentRespSimService {
 	 * @return The incident response
 	 */
 	public IncidentResponse simulateStructureFireResponse( StructureFireIncident incident ) {
+		
+		IncidentRequirements respReq = respReqService.getIncidentRespReq( incident );
 		
 		return new IncidentResponse();
 	}
@@ -38,8 +45,10 @@ public class IncidentRespSimService {
 	 */
 	public IncidentResponse simulateMedicalEmergencyResponse( MedicalEmergencyIncident incident ) {
 			
-			return new IncidentResponse();
-		}
+		IncidentRequirements respReq = respReqService.getIncidentRespReq( incident );
+			
+		return new IncidentResponse();
+	}
 	
 	/**
 	 * Simulates the emergency services response to an mass casualty
@@ -49,6 +58,8 @@ public class IncidentRespSimService {
 	 * @return The incident response
 	 */
 	public IncidentResponse simulateMassCasualtyResponse( MassCasualtyIncident incident ) {
+		
+		IncidentRequirements respReq = respReqService.getIncidentRespReq( incident );
 		
 		return new IncidentResponse();
 	}
@@ -61,6 +72,8 @@ public class IncidentRespSimService {
 	 */
 	public IncidentResponse simulateWaterRescueResponse( WaterRescueIncident incident ) {
 		
+		IncidentRequirements respReq = respReqService.getIncidentRespReq( incident );
+		
 		return new IncidentResponse();
 	}
 	
@@ -72,6 +85,8 @@ public class IncidentRespSimService {
 	 */
 	public IncidentResponse simulateVehicleAccidentResponse( VehicleAccidentIncident incident ) {
 		
+		IncidentRequirements respReq = respReqService.getIncidentRespReq( incident );
+		
 		return new IncidentResponse();
 	}
 	
@@ -80,8 +95,11 @@ public class IncidentRespSimService {
 	 * 
 	 * @param incident The parameters of the fuel spill
 	 * @return The incident response
+	 * @throws Exception 
 	 */
-	public IncidentResponse simulateFuelSpillResponse( FuelSpillIncident incident ) {
+	public IncidentResponse simulateFuelSpillResponse( FuelSpillIncident incident ) throws Exception {
+		
+		IncidentRequirements respReq = respReqService.getIncidentRespReq( incident );
 		
 		return new IncidentResponse();
 	}

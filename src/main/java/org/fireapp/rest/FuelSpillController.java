@@ -7,7 +7,7 @@ import org.fireapp.model.incident.FuelSpillIncident;
 import org.fireapp.model.incident.IncidentResponse;
 import org.fireapp.rest.validator.FuelSpillIncidentReqValidator;
 import org.fireapp.service.BorderService;
-import org.fireapp.service.IncidentRespSimService;
+import org.fireapp.service.IncidentSimulatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class FuelSpillController {
 
 	@Autowired
-	private IncidentRespSimService incidentRespSimService;
+	private IncidentSimulatorService incidentRespSimService;
 
 	@Autowired
 	private FuelSpillIncidentReqValidator incidentValidator;
@@ -51,10 +51,11 @@ public class FuelSpillController {
 	 * @param incident The incident 
 	 * @param result The list of validation errors
 	 * @return The incident response
+	 * @throws Exception 
 	 */
 	@RequestMapping( value = "/incident", method = RequestMethod.POST, produces = "application/json" )
 	public ResponseEntity<Object> simulateFuelSpillResponse( 
-			@Validated @RequestBody FuelSpillIncident incident, BindingResult result ) {
+			@Validated @RequestBody FuelSpillIncident incident, BindingResult result ) throws Exception {
 		
 		// Checks for request errors error
 		if ( result.hasErrors() ) {

@@ -7,7 +7,7 @@ import org.fireapp.model.incident.IncidentResponse;
 import org.fireapp.model.incident.StructureFireIncident;
 import org.fireapp.rest.validator.StructureFireIncidentReqValidator;
 import org.fireapp.service.BorderService;
-import org.fireapp.service.IncidentRespSimService;
+import org.fireapp.service.IncidentSimulatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class StructureFireController {
 
 	@Autowired
-	private IncidentRespSimService incidentRespSimService;
+	private IncidentSimulatorService incidentRespSimService;
 	
 	@Autowired
 	private StructureFireIncidentReqValidator incidentValidator;
