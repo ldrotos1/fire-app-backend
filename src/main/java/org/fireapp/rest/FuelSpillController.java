@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.fireapp.model.incident.FuelSpillIncident;
-import org.fireapp.model.incident.IncidentResponse;
+import org.fireapp.model.incident.response.IncidentResponse;
 import org.fireapp.rest.validator.FuelSpillIncidentReqValidator;
 import org.fireapp.service.BorderService;
 import org.fireapp.service.IncidentSimulatorService;
