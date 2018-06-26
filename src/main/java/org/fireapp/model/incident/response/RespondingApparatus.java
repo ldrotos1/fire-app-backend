@@ -1,4 +1,4 @@
-package org.fireapp.model.incident;
+package org.fireapp.model.incident.response;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -7,11 +7,12 @@ import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.fireapp.model.ApparatusTypeLite;
 import org.fireapp.model.StationLiteName;
+import org.hibernate.annotations.Where;
 
 /**
  * Represents an fire department apparatus that is
@@ -22,6 +23,9 @@ import org.fireapp.model.StationLiteName;
  */
 @Entity
 @Table( name = "apparatus" )
+@SecondaryTable( name = "apparatus_type", foreignKey = 
+	@ForeignKey( name = "apparatus_apparatus_type_id_fkey" ) )
+@Where( clause = "include_in_simulator = 1 and is_reserve = false" )
 public class RespondingApparatus {
 
 	@Id
@@ -31,10 +35,8 @@ public class RespondingApparatus {
 	@Column( name = "unit_designator", unique = true )
 	private String unitDesignator;
 	
-	@ManyToOne( cascade = CascadeType.ALL )
-	@JoinColumn( name = "apparatus_type_id", foreignKey = 
-		@ForeignKey( name = "apparatus_apparatus_type_id_fkey" ) )
-	private ApparatusTypeLite apparatusType;
+	@Column( name = "name", table = "apparatus_type" )
+	private String unitType;
 	
 	@ManyToOne( cascade = CascadeType.ALL )
 	@JoinColumn( name = "station_id", foreignKey = 
@@ -50,7 +52,7 @@ public class RespondingApparatus {
 	public RespondingApparatus() {
 		// Empty body
 	}
-	
+
 	public Integer getApparatusId() {
 		return apparatusId;
 	}
@@ -67,12 +69,12 @@ public class RespondingApparatus {
 		this.unitDesignator = unitDesignator;
 	}
 
-	public ApparatusTypeLite getApparatusType() {
-		return apparatusType;
+	public String getUnitType() {
+		return unitType;
 	}
 
-	public void setApparatusType(ApparatusTypeLite apparatusType) {
-		this.apparatusType = apparatusType;
+	public void setUnitType(String unitType) {
+		this.unitType = unitType;
 	}
 
 	public StationLiteName getStation() {
@@ -104,7 +106,6 @@ public class RespondingApparatus {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((apparatusId == null) ? 0 : apparatusId.hashCode());
-		result = prime * result + ((station == null) ? 0 : station.hashCode());
 		return result;
 	}
 
@@ -121,11 +122,6 @@ public class RespondingApparatus {
 			if (other.apparatusId != null)
 				return false;
 		} else if (!apparatusId.equals(other.apparatusId))
-			return false;
-		if (station == null) {
-			if (other.station != null)
-				return false;
-		} else if (!station.equals(other.station))
 			return false;
 		return true;
 	}

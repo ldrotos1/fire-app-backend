@@ -1,4 +1,4 @@
-package org.fireapp.model.incident;
+package org.fireapp.model.incident.response;
 
 import java.util.List;
 

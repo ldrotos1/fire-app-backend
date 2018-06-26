@@ -2,7 +2,9 @@ package org.fireapp.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
+import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
 /**
@@ -14,6 +16,8 @@ import javax.persistence.Table;
 */
 @Entity
 @Table( name = "station" )
+@SecondaryTable( name = "department", foreignKey = 
+	@ForeignKey( name = "fk_dept_id" ) )
 public class StationLiteName {
 
 	@Id
@@ -28,6 +32,15 @@ public class StationLiteName {
 	
 	@Column( name = "name" )
 	private String name;
+	
+	@Column( name = "department_id" )
+	private Integer deptId;
+	
+	@Column( name = "name", table = "department" )
+	private String deptName;
+	
+	@Column( name = "abbreviation", table = "department" )
+	private String deptAbbreviation;
 	
 	public StationLiteName() {
 		// Empty body
@@ -63,6 +76,30 @@ public class StationLiteName {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Integer getDeptId() {
+		return deptId;
+	}
+
+	public void setDeptId(Integer deptId) {
+		this.deptId = deptId;
+	}
+
+	public String getDeptName() {
+		return deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+
+	public String getDeptAbbreviation() {
+		return deptAbbreviation;
+	}
+
+	public void setDeptAbbreviation(String deptAbbreviation) {
+		this.deptAbbreviation = deptAbbreviation;
 	}
 
 	@Override
