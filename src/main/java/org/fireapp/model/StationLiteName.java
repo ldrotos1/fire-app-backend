@@ -1,9 +1,12 @@
 package org.fireapp.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
@@ -16,8 +19,6 @@ import javax.persistence.Table;
 */
 @Entity
 @Table( name = "station" )
-@SecondaryTable( name = "department", foreignKey = 
-	@ForeignKey( name = "fk_dept_id" ) )
 public class StationLiteName {
 
 	@Id
@@ -33,14 +34,10 @@ public class StationLiteName {
 	@Column( name = "name" )
 	private String name;
 	
-	@Column( name = "department_id" )
-	private Integer deptId;
-	
-	@Column( name = "name", table = "department" )
-	private String deptName;
-	
-	@Column( name = "abbreviation", table = "department" )
-	private String deptAbbreviation;
+	@ManyToOne( cascade = CascadeType.ALL )
+	@JoinColumn( name = "department_id", foreignKey = 
+		@ForeignKey( name = "fk_dept_id" ) )
+	private DepartmentLite department;
 	
 	public StationLiteName() {
 		// Empty body
@@ -78,37 +75,18 @@ public class StationLiteName {
 		this.name = name;
 	}
 
-	public Integer getDeptId() {
-		return deptId;
+	public DepartmentLite getDepartment() {
+		return department;
 	}
 
-	public void setDeptId(Integer deptId) {
-		this.deptId = deptId;
-	}
-
-	public String getDeptName() {
-		return deptName;
-	}
-
-	public void setDeptName(String deptName) {
-		this.deptName = deptName;
-	}
-
-	public String getDeptAbbreviation() {
-		return deptAbbreviation;
-	}
-
-	public void setDeptAbbreviation(String deptAbbreviation) {
-		this.deptAbbreviation = deptAbbreviation;
+	public void setDepartment(DepartmentLite department) {
+		this.department = department;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((designator == null) ? 0 : designator.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((number == null) ? 0 : number.hashCode());
 		result = prime * result + ((stationId == null) ? 0 : stationId.hashCode());
 		return result;
 	}
@@ -122,21 +100,6 @@ public class StationLiteName {
 		if (getClass() != obj.getClass())
 			return false;
 		StationLiteName other = (StationLiteName) obj;
-		if (designator == null) {
-			if (other.designator != null)
-				return false;
-		} else if (!designator.equals(other.designator))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (number == null) {
-			if (other.number != null)
-				return false;
-		} else if (!number.equals(other.number))
-			return false;
 		if (stationId == null) {
 			if (other.stationId != null)
 				return false;

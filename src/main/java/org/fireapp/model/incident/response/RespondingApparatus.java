@@ -7,10 +7,10 @@ import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.fireapp.model.ApparatusTypeLite;
 import org.fireapp.model.StationLiteName;
 import org.hibernate.annotations.Where;
 
@@ -23,9 +23,6 @@ import org.hibernate.annotations.Where;
  */
 @Entity
 @Table( name = "apparatus" )
-@SecondaryTable( name = "apparatus_type", foreignKey = 
-	@ForeignKey( name = "apparatus_apparatus_type_id_fkey" ) )
-@Where( clause = "include_in_simulator = 1 and is_reserve = false" )
 public class RespondingApparatus {
 
 	@Id
@@ -35,13 +32,15 @@ public class RespondingApparatus {
 	@Column( name = "unit_designator", unique = true )
 	private String unitDesignator;
 	
-	@Column( name = "name", table = "apparatus_type" )
-	private String unitType;
-	
 	@ManyToOne( cascade = CascadeType.ALL )
 	@JoinColumn( name = "station_id", foreignKey = 
-		@ForeignKey( name = "station_station_id_fkey" ) )
+		@ForeignKey( name = "fk_station" ) )
 	private StationLiteName station;
+	
+	@ManyToOne( cascade = CascadeType.ALL )
+	@JoinColumn( name = "apparatus_type_id", foreignKey = 
+		@ForeignKey( name = "apparatus_apparatus_type_id_fkey" ) )
+	private ApparatusTypeLite apparatusType;
 	
 	@Transient
 	private Integer travelTime;
@@ -69,20 +68,20 @@ public class RespondingApparatus {
 		this.unitDesignator = unitDesignator;
 	}
 
-	public String getUnitType() {
-		return unitType;
-	}
-
-	public void setUnitType(String unitType) {
-		this.unitType = unitType;
-	}
-
 	public StationLiteName getStation() {
 		return station;
 	}
 
 	public void setStation(StationLiteName station) {
 		this.station = station;
+	}
+
+	public ApparatusTypeLite getApparatusType() {
+		return apparatusType;
+	}
+
+	public void setApparatusType(ApparatusTypeLite apparatusType) {
+		this.apparatusType = apparatusType;
 	}
 
 	public Integer getTravelTime() {

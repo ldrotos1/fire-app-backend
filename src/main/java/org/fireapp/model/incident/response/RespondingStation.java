@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table( name = "station" )
 public class RespondingStation {
@@ -22,6 +24,7 @@ public class RespondingStation {
 	
 	@OneToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
 	@JoinColumn( name = "station_id" )
+	@Where( clause = "apparatust1_.include_in_simulator = 1 and is_reserve = false" )
 	private List<RespondingApparatus> apparatus;
 	
 	@Transient

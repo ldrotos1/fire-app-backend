@@ -23,6 +23,9 @@ public class DepartmentLite {
 	@Column( name = "name" )
 	private String name;
 	
+	@Column( name = "abbreviation", table = "department" )
+	private String deptAbbreviation;
+	
 	public DepartmentLite() {
 		// Empty body
 	}
@@ -43,18 +46,24 @@ public class DepartmentLite {
 		this.name = name;
 	}
 
+	public String getDeptAbbreviation() {
+		return deptAbbreviation;
+	}
+
+	public void setDeptAbbreviation(String deptAbbreviation) {
+		this.deptAbbreviation = deptAbbreviation;
+	}
+
 	@Override
 	public int hashCode() {
-		
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((departmentId == null) ? 0 : departmentId.hashCode());
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -62,11 +71,12 @@ public class DepartmentLite {
 		if (getClass() != obj.getClass())
 			return false;
 		DepartmentLite other = (DepartmentLite) obj;
-		if (name == null) {
-			if (other.name != null)
+		if (departmentId == null) {
+			if (other.departmentId != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!departmentId.equals(other.departmentId))
 			return false;
 		return true;
 	}
+
 }
