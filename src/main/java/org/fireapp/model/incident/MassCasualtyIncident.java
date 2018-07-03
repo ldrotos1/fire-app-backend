@@ -9,6 +9,7 @@ package org.fireapp.model.incident;
 public class MassCasualtyIncident extends Incident {
 
 	private Integer casualties;
+	private Integer massCasAlarmNum;
 	
 	public MassCasualtyIncident() {
 		// Empty body
@@ -20,5 +21,13 @@ public class MassCasualtyIncident extends Incident {
 
 	public void setCasualties(Integer casualties) {
 		this.casualties = casualties;
+	}
+
+	public Integer getMassCasAlarmNum() {
+		return massCasAlarmNum;
+	}
+
+	public void setMassCasAlarmNum(Integer massCasAlarmNum) {
+		this.massCasAlarmNum = massCasAlarmNum;
 	}
 }

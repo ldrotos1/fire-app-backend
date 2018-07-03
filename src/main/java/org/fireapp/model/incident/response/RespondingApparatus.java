@@ -12,8 +12,6 @@ import javax.persistence.Transient;
 
 import org.fireapp.model.ApparatusTypeLite;
 import org.fireapp.model.StationLiteName;
-import org.hibernate.annotations.Where;
-
 /**
  * Represents an fire department apparatus that is
  * responding to an emergency incident

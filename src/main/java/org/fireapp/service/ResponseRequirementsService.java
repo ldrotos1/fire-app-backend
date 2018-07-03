@@ -129,6 +129,8 @@ public class ResponseRequirementsService {
 		
 		if ( casualties <= 10 ) {
 			
+			incident.setMassCasAlarmNum( 0 );
+			
 			reqs.setMedicCount( 5 );
 			reqs.setBattalionChiefCount( 1 );
 			reqs.setEmsSupervisorCount( 2 );
@@ -147,6 +149,8 @@ public class ResponseRequirementsService {
 				
 				massCasAlarm = ( casualties / 25 ) + 1;
 			}
+			
+			incident.setMassCasAlarmNum( massCasAlarm );
 			
 			reqs.setMobileCommandCount( 1 );
 			reqs.setMedicCount( massCasAlarm * 10 );
