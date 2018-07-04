@@ -1,12 +1,11 @@
 package org.fireapp.rest;
 
+import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.fireapp.model.incident.MedicalEmergencyIncident;
 import org.fireapp.model.incident.response.IncidentResponse;
-import org.fireapp.model.incident.response.RespondingStation;
 import org.fireapp.rest.validator.MedEmergencyIncidentReqValidator;
 import org.fireapp.service.BorderService;
 import org.fireapp.service.IncidentSimulatorService;
@@ -53,10 +52,11 @@ public class MedicalEmergencyController {
 	 * @param incident The incident 
 	 * @param result The list of validation errors
 	 * @return The incident response
+	 * @throws IOException 
 	 */
 	@RequestMapping( value = "/incident", method = RequestMethod.POST, produces = "application/json" )
 	public ResponseEntity<Object> simulateMedicalEmergencyResponse( 
-			@Validated @RequestBody MedicalEmergencyIncident incident, BindingResult result ) {
+			@Validated @RequestBody MedicalEmergencyIncident incident, BindingResult result ) throws IOException {
 		
 		// Checks for request errors error
 		if ( result.hasErrors() ) {

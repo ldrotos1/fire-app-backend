@@ -1,5 +1,6 @@
 package org.fireapp.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -50,6 +51,9 @@ public class RespondingApparatusService {
 	@Autowired
 	private RespondingStationDao respondingStationDao;
 	
+	@Autowired
+	private RoutingService routingService;
+	
 	/**
 	 * Gets a list of apparatus that should respond to the specified 
 	 * emergency incident 
@@ -58,9 +62,10 @@ public class RespondingApparatusService {
 	 * @param respReq The response requirements
 	 * @param location The incident location
 	 * @return The list of responding apparatus
+	 * @throws IOException 
 	 */
 	public List<RespondingApparatus> getRespondingApparatus( 
-			MedicalEmergencyIncident incident, IncidentRequirements respReq, Point location ) {
+			MedicalEmergencyIncident incident, IncidentRequirements respReq, Point location ) throws IOException {
 		
 		Set<RespondingStation> stations;
 		List<RespondingApparatus> apparatus;
@@ -68,6 +73,9 @@ public class RespondingApparatusService {
 		// Gets the stations that may send apparatus to the incident 
 		stations = new HashSet<RespondingStation>();
 		stations.addAll( respondingStationDao.getNearestStations( location, 5 ) );
+		
+		// Computes travel times from stations
+		this.routingService.computeTravelTimesAndDist( location, stations );
 		
 		return null;
 	}
@@ -80,9 +88,10 @@ public class RespondingApparatusService {
 	 * @param respReq The response requirements
 	 * @param location The incident location
 	 * @return The list of responding apparatus
+	 * @throws IOException 
 	 */
 	public List<RespondingApparatus> getRespondingApparatus( 
-			StructureFireIncident incident, IncidentRequirements respReq, Point location ) { 
+			StructureFireIncident incident, IncidentRequirements respReq, Point location ) throws IOException { 
 		
 		Set<RespondingStation> stations;
 		List<RespondingApparatus> apparatus;
@@ -102,6 +111,9 @@ public class RespondingApparatusService {
 			stations.addAll( respondingStationDao.getAllStationsWithApparatusType( TANKER_ID ) );
 		}
 		
+		// Computes travel times from stations
+		this.routingService.computeTravelTimesAndDist( location, stations );
+		
 		return null;
 	}
 	
@@ -113,9 +125,10 @@ public class RespondingApparatusService {
 	 * @param respReq The response requirements
 	 * @param location The incident location
 	 * @return The list of responding apparatus
+	 * @throws IOException 
 	 */
 	public List<RespondingApparatus> getRespondingApparatus( 
-			VehicleAccidentIncident incident, IncidentRequirements respReq, Point location ) { 
+			VehicleAccidentIncident incident, IncidentRequirements respReq, Point location ) throws IOException { 
 		
 		Set<RespondingStation> stations;
 		List<RespondingApparatus> apparatus;
@@ -149,6 +162,9 @@ public class RespondingApparatusService {
 			stations.addAll( respondingStationDao.getAllStationsWithApparatusType( HAZMAT_ID ) );
 		}
 		
+		// Computes travel times from stations
+		this.routingService.computeTravelTimesAndDist( location, stations );
+		
 		return null;
 	}
 	
@@ -160,9 +176,10 @@ public class RespondingApparatusService {
 	 * @param respReq The response requirements
 	 * @param location The incident location
 	 * @return The list of responding apparatus
+	 * @throws IOException 
 	 */
 	public List<RespondingApparatus> getRespondingApparatus( 
-			MassCasualtyIncident incident, IncidentRequirements respReq, Point location ) { 
+			MassCasualtyIncident incident, IncidentRequirements respReq, Point location ) throws IOException { 
 		
 		Set<RespondingStation> stations;
 		List<RespondingApparatus> apparatus;
@@ -187,6 +204,9 @@ public class RespondingApparatusService {
 			stations.addAll( respondingStationDao.getAllStationsWithApparatusType( MED_BUS_ID ) );
 		}
 
+		// Computes travel times from stations
+		this.routingService.computeTravelTimesAndDist( location, stations );
+		
 		return null;
 	}
 	
@@ -198,9 +218,10 @@ public class RespondingApparatusService {
 	 * @param respReq The response requirements
 	 * @param location The incident location
 	 * @return The list of responding apparatus
+	 * @throws IOException 
 	 */
 	public List<RespondingApparatus> getRespondingApparatus( 
-			WaterRescueIncident incident, IncidentRequirements respReq, Point location ) { 
+			WaterRescueIncident incident, IncidentRequirements respReq, Point location ) throws IOException { 
 		
 		Set<RespondingStation> stations;
 		List<RespondingApparatus> apparatus;
@@ -217,6 +238,9 @@ public class RespondingApparatusService {
 		aerialIds.add( TOWER_ID );
 		stations.addAll( respondingStationDao.getNearestStationsWithApparatusType( location, 3, aerialIds ) );
 
+		// Computes travel times from stations
+		this.routingService.computeTravelTimesAndDist( location, stations );
+		
 		return null;
 	}
 	
@@ -228,9 +252,10 @@ public class RespondingApparatusService {
 	 * @param respReq The response requirements
 	 * @param location The incident location
 	 * @return The list of responding apparatus
+	 * @throws IOException 
 	 */
 	public List<RespondingApparatus> getRespondingApparatus( 
-			FuelSpillIncident incident, IncidentRequirements respReq, Point location ) { 
+			FuelSpillIncident incident, IncidentRequirements respReq, Point location ) throws IOException { 
 		
 		Set<RespondingStation> stations;
 		List<RespondingApparatus> apparatus;
@@ -267,6 +292,9 @@ public class RespondingApparatusService {
 			foamIds.add( FOAM_ENGINE_ID );
 			stations.addAll( respondingStationDao.getAllStationsWithApparatusType( foamIds ) );
 		}
+		
+		// Computes travel times from stations
+		this.routingService.computeTravelTimesAndDist( location, stations );
 		
 		return null;
 	}

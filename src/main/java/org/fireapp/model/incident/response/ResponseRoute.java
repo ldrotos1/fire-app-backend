@@ -2,7 +2,7 @@ package org.fireapp.model.incident.response;
 
 import java.util.List;
 
-import org.fireapp.model.incident.Location;
+import org.fireapp.dto.Location;
 
 /**
  * Represents a route from a fire station to an emergency

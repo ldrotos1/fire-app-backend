@@ -1,5 +1,6 @@
 package org.fireapp.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.fireapp.dao.RespondingStationDao;
@@ -35,15 +36,16 @@ public class IncidentSimulatorService {
 	private ResponseRequirementsService respReqService;
 	
 	@Autowired
-	RespondingApparatusService respondingApparatusService;
+	private RespondingApparatusService respondingApparatusService;
 	
 	/**
 	 * Simulates the emergency services response to a structure fire
 	 * 
 	 * @param incident The parameters of the structure fire
 	 * @return The incident response
+	 * @throws IOException 
 	 */
-	public IncidentResponse simulateStructureFireResponse( StructureFireIncident incident ) {
+	public IncidentResponse simulateStructureFireResponse( StructureFireIncident incident ) throws IOException {
 		
 		IncidentRequirements respReq;
 		IncidentResponse incidentResp;
@@ -73,8 +75,9 @@ public class IncidentSimulatorService {
 	 * 
 	 * @param incident The parameters of the medical emergency
 	 * @return The incident response
+	 * @throws IOException 
 	 */
-	public IncidentResponse simulateMedicalEmergencyResponse( MedicalEmergencyIncident incident ) {
+	public IncidentResponse simulateMedicalEmergencyResponse( MedicalEmergencyIncident incident ) throws IOException {
 			
 		IncidentRequirements respReq;
 		IncidentResponse incidentResp;
@@ -105,8 +108,9 @@ public class IncidentSimulatorService {
 	 * 
 	 * @param incident The parameters of the mass casualty incident
 	 * @return The incident response
+	 * @throws IOException 
 	 */
-	public IncidentResponse simulateMassCasualtyResponse( MassCasualtyIncident incident ) {
+	public IncidentResponse simulateMassCasualtyResponse( MassCasualtyIncident incident ) throws IOException {
 		
 		IncidentRequirements respReq;
 		IncidentResponse incidentResp;
@@ -136,8 +140,9 @@ public class IncidentSimulatorService {
 	 * 
 	 * @param incident The parameters of the water rescue emergency
 	 * @return The incident response
+	 * @throws IOException 
 	 */
-	public IncidentResponse simulateWaterRescueResponse( WaterRescueIncident incident ) {
+	public IncidentResponse simulateWaterRescueResponse( WaterRescueIncident incident ) throws IOException {
 		
 		IncidentRequirements respReq;
 		IncidentResponse incidentResp;
@@ -167,8 +172,9 @@ public class IncidentSimulatorService {
 	 * 
 	 * @param incident The parameters of the vehicle accident
 	 * @return The incident response
+	 * @throws IOException 
 	 */
-	public IncidentResponse simulateVehicleAccidentResponse( VehicleAccidentIncident incident ) {
+	public IncidentResponse simulateVehicleAccidentResponse( VehicleAccidentIncident incident ) throws IOException {
 		
 		IncidentRequirements respReq;
 		IncidentResponse incidentResp;

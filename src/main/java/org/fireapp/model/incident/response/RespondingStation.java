@@ -16,11 +16,17 @@ import org.hibernate.annotations.Where;
 
 @Entity
 @Table( name = "station" )
-public class RespondingStation {
+public class RespondingStation implements Comparable<RespondingStation> {
 
 	@Id
 	@Column( name = "station_id" )
 	private Integer stationId;
+	
+	@Column(name = "lat")
+	private Double lat;
+	
+	@Column(name = "lon")
+	private Double lon;
 	
 	@OneToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
 	@JoinColumn( name = "station_id" )
@@ -28,7 +34,7 @@ public class RespondingStation {
 	private List<RespondingApparatus> apparatus;
 	
 	@Transient
-	private Integer travelTime;
+	private Long travelTime;
 	
 	@Transient
 	private Double travelDistance;
@@ -44,6 +50,22 @@ public class RespondingStation {
 	public void setStationId(Integer stationId) {
 		this.stationId = stationId;
 	}
+	
+	public Double getLat() {
+		return lat;
+	}
+
+	public void setLat(Double lat) {
+		this.lat = lat;
+	}
+
+	public Double getLon() {
+		return lon;
+	}
+
+	public void setLon(Double lon) {
+		this.lon = lon;
+	}
 
 	public List<RespondingApparatus> getApparatus() {
 		return apparatus;
@@ -53,11 +75,11 @@ public class RespondingStation {
 		this.apparatus = apparatus;
 	}
 
-	public Integer getTravelTime() {
+	public Long getTravelTime() {
 		return travelTime;
 	}
 
-	public void setTravelTime(Integer travelTime) {
+	public void setTravelTime(Long travelTime) {
 		this.travelTime = travelTime;
 	}
 
@@ -69,6 +91,21 @@ public class RespondingStation {
 		this.travelDistance = travelDistance;
 	}
 
+	@Override
+	public int compareTo( RespondingStation otherStation ) {
+		
+		if ( this.travelTime < otherStation.travelTime ) {
+			
+			return -1;
+		}
+		else if ( this.travelTime > otherStation.travelTime ) {
+			
+			return 1;
+		}
+		
+		return 0;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

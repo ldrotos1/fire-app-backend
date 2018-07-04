@@ -1,5 +1,6 @@
 package org.fireapp.rest;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,10 +52,11 @@ public class WaterRescueController {
 	 * @param incident The incident 
 	 * @param result The list of validation errors
 	 * @return The incident response
+	 * @throws IOException 
 	 */
 	@RequestMapping( value = "/incident", method = RequestMethod.POST, produces = "application/json" )
 	public ResponseEntity<Object> simulateWaterRescueResponse( 
-			@Validated @RequestBody WaterRescueIncident incident, BindingResult result ) {
+			@Validated @RequestBody WaterRescueIncident incident, BindingResult result ) throws IOException {
 		
 		// Checks for request errors error
 		if ( result.hasErrors() ) {
