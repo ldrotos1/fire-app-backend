@@ -29,8 +29,6 @@ import com.vividsolutions.jts.geom.Point;
 @Service
 public class RoutingService {
 
-	private static final String ROUTE_MATRIX_URL = "http://www.mapquestapi.com/directions/v2/routematrix?key=Fmjtd|luu8290an5,aa=o5-947xdy";
-	
 	@Autowired
 	private AppPropUtils appPropUtils;
 	
