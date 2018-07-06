@@ -6,11 +6,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import org.fireapp.AppPropUtils;
 import org.fireapp.dto.Coordinate;
 import org.fireapp.dto.Location;
 import org.fireapp.dto.RouteMatrixRequest;
 import org.fireapp.dto.RouteMatrixResponse;
 import org.fireapp.model.incident.response.RespondingStation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.apache.commons.collections4.ListUtils;
@@ -27,7 +29,10 @@ import com.vividsolutions.jts.geom.Point;
 @Service
 public class RoutingService {
 
-	private static final String ROUTE_MATRIX_URL = "http://www.mapquestapi.com/directions/v2/routematrix?key=<API-KEY>";
+	private static final String ROUTE_MATRIX_URL = "http://www.mapquestapi.com/directions/v2/routematrix?key=Fmjtd|luu8290an5,aa=o5-947xdy";
+	
+	@Autowired
+	private AppPropUtils appPropUtils;
 	
 	public RoutingService() {
 		// Empty body
@@ -135,7 +140,7 @@ public class RoutingService {
 		for( RouteMatrixRequest req : requests ) {
 			
 			// Creates and executes the request
-		    RouteMatrixResponse response = restTemplate.postForObject( ROUTE_MATRIX_URL, req, RouteMatrixResponse.class );
+		    RouteMatrixResponse response = restTemplate.postForObject( appPropUtils.getRouteMatrixUrl(), req, RouteMatrixResponse.class );
 			list.add( response );
 		}
 		
