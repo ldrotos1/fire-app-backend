@@ -41,7 +41,7 @@ public class RespondingApparatus {
 	private ApparatusTypeLite apparatusType;
 	
 	@Transient
-	private Integer travelTime;
+	private Long travelTime;
 	
 	@Transient
 	private Double travelDistance;
@@ -82,11 +82,11 @@ public class RespondingApparatus {
 		this.apparatusType = apparatusType;
 	}
 
-	public Integer getTravelTime() {
+	public Long getTravelTime() {
 		return travelTime;
 	}
 
-	public void setTravelTime(Integer travelTime) {
+	public void setTravelTime(Long travelTime) {
 		this.travelTime = travelTime;
 	}
 

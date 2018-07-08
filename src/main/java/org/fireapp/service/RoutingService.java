@@ -11,6 +11,7 @@ import org.fireapp.dto.Coordinate;
 import org.fireapp.dto.Location;
 import org.fireapp.dto.RouteMatrixRequest;
 import org.fireapp.dto.RouteMatrixResponse;
+import org.fireapp.model.incident.response.RespondingApparatus;
 import org.fireapp.model.incident.response.RespondingStation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,13 +64,22 @@ public class RoutingService {
 		// Executes the MapQuest service calls
 		responseList = this.executeRouteMatrixCalls( requestList );
 		
-		// Adds the travel time and distances to the station objects
+		// Adds the travel time and distances to the station and apparatus objects
 		for ( RouteMatrixResponse resp : responseList ) {
 		
 			for ( int x = 1; x < resp.getTime().size(); x++ ) {
 				
+				// Adds the travel time and distance values to the apparatus
+				for ( RespondingApparatus apparatus : stationList.get( stationIndex ).getApparatus() ) {
+					
+					apparatus.setTravelDistance( resp.getDistance().get(x) );
+					apparatus.setTravelTime( resp.getTime().get(x) );
+				}
+				
+				// Adds the travel time and distance values to the station
 				stationList.get( stationIndex ).setTravelDistance( resp.getDistance().get(x) );
 				stationList.get( stationIndex ).setTravelTime( resp.getTime().get(x) );
+				
 				stationIndex++;
 			} 
 		}
