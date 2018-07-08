@@ -2,6 +2,8 @@ package org.fireapp.dto;
 
 import java.util.List;
 
+import org.fireapp.model.incident.response.Location;
+
 /**
  * A request object representing the client request for 
  * the route service

@@ -8,9 +8,9 @@ import java.util.Set;
 
 import org.fireapp.AppPropUtils;
 import org.fireapp.dto.Coordinate;
-import org.fireapp.dto.Location;
 import org.fireapp.dto.RouteMatrixRequest;
 import org.fireapp.dto.RouteMatrixResponse;
+import org.fireapp.model.incident.response.Location;
 import org.fireapp.model.incident.response.RespondingApparatus;
 import org.fireapp.model.incident.response.RespondingStation;
 import org.springframework.beans.factory.annotation.Autowired;

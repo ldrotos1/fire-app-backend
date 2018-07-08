@@ -63,6 +63,7 @@ public class IncidentSimulatorService {
 		// Determines the apparatus that should respond to the incident
 		apparatus = this.respondingApparatusService.getRespondingApparatus( incident, respReq, incidentLocation );
 		
+		
 		// Creates the incident response package
 		incidentResp = new IncidentResponse();
 		incidentResp.setRespondingApparatus( apparatus );

@@ -2,8 +2,6 @@ package org.fireapp.model.incident.response;
 
 import java.util.List;
 
-import org.fireapp.dto.Location;
-
 /**
  * Represents a route from a fire station to an emergency
  * incident that responding apparatus will traverse
