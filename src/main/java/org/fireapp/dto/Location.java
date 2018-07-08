@@ -1,6 +1,4 @@
-package org.fireapp.model.incident.response;
-
-import org.fireapp.dto.Coordinate;
+package org.fireapp.dto;
 
 /**
  * Represents a geographic location that can be submitted
