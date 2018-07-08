@@ -28,12 +28,12 @@ import com.vividsolutions.jts.geom.Point;
  *
  */
 @Service
-public class RoutingService {
+public class MapQuestDirectionsService {
 
 	@Autowired
 	private AppPropUtils appPropUtils;
 	
-	public RoutingService() {
+	public MapQuestDirectionsService() {
 		// Empty body
 	}
 	
