@@ -11,10 +11,22 @@ import java.util.List;
  */
 public class RouteRequest {
 
+	private Integer stationId;
+	
 	private List<Location> locations;
+	
+	private Options options = new Options();
 	
 	public RouteRequest() {
 		// Empty body
+	}
+
+	public Integer getStationId() {
+		return stationId;
+	}
+
+	public void setStationId(Integer stationId) {
+		this.stationId = stationId;
 	}
 
 	public List<Location> getLocations() {
@@ -23,5 +35,13 @@ public class RouteRequest {
 
 	public void setLocations(List<Location> locations) {
 		this.locations = locations;
+	}
+
+	public Options getOptions() {
+		return options;
+	}
+
+	public void setOptions(Options options) {
+		this.options = options;
 	}
 }

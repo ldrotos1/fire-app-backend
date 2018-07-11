@@ -56,7 +56,7 @@ public class MedicalEmergencyController {
 	 */
 	@RequestMapping( value = "/incident", method = RequestMethod.POST, produces = "application/json" )
 	public ResponseEntity<Object> simulateMedicalEmergencyResponse( 
-			@Validated @RequestBody MedicalEmergencyIncident incident, BindingResult result ) throws IOException {
+			@Validated @RequestBody MedicalEmergencyIncident incident, BindingResult result ) throws Exception {
 		
 		// Checks for request errors error
 		if ( result.hasErrors() ) {

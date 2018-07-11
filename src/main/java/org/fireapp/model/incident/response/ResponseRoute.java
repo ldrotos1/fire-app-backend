@@ -3,7 +3,6 @@ package org.fireapp.model.incident.response;
 import java.util.List;
 
 import org.fireapp.dto.Coordinate;
-import org.fireapp.dto.Location;
 
 /**
  * Represents a route from a fire station to an emergency
@@ -14,27 +13,27 @@ import org.fireapp.dto.Location;
  */
 public class ResponseRoute {
 
-	private String stationId;
-	private List<String> apparatusIds;
+	private Integer stationId;
+	private List<Integer> apparatusIds;
 	private List<Coordinate> waypoints;
 	
 	public ResponseRoute() {
 		// Empty body
 	}
 
-	public String getStationId() {
+	public Integer getStationId() {
 		return stationId;
 	}
 
-	public void setStationId(String stationId) {
+	public void setStationId(Integer stationId) {
 		this.stationId = stationId;
 	}
 
-	public List<String> getApparatusIds() {
+	public List<Integer> getApparatusIds() {
 		return apparatusIds;
 	}
 
-	public void setApparatusIds(List<String> apparatusIds) {
+	public void setApparatusIds(List<Integer> apparatusIds) {
 		this.apparatusIds = apparatusIds;
 	}
 
@@ -44,5 +43,30 @@ public class ResponseRoute {
 
 	public void setWaypoints(List<Coordinate> waypoints) {
 		this.waypoints = waypoints;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((stationId == null) ? 0 : stationId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ResponseRoute other = (ResponseRoute) obj;
+		if (stationId == null) {
+			if (other.stationId != null)
+				return false;
+		} else if (!stationId.equals(other.stationId))
+			return false;
+		return true;
 	}
 }

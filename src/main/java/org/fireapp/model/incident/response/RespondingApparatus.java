@@ -11,7 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.fireapp.model.ApparatusTypeLite;
-import org.fireapp.model.StationLiteName;
+import org.fireapp.model.StationLiteLocation;
+
 /**
  * Represents an fire department apparatus that is
  * responding to an emergency incident
@@ -33,7 +34,7 @@ public class RespondingApparatus {
 	@ManyToOne( cascade = CascadeType.ALL )
 	@JoinColumn( name = "station_id", foreignKey = 
 		@ForeignKey( name = "fk_station" ) )
-	private StationLiteName station;
+	private StationLiteLocation station;
 	
 	@ManyToOne( cascade = CascadeType.ALL )
 	@JoinColumn( name = "apparatus_type_id", foreignKey = 
@@ -66,11 +67,11 @@ public class RespondingApparatus {
 		this.unitDesignator = unitDesignator;
 	}
 
-	public StationLiteName getStation() {
+	public StationLiteLocation getStation() {
 		return station;
 	}
 
-	public void setStation(StationLiteName station) {
+	public void setStation(StationLiteLocation station) {
 		this.station = station;
 	}
 

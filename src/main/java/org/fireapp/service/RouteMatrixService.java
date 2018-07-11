@@ -21,19 +21,19 @@ import org.apache.commons.collections4.ListUtils;
 import com.vividsolutions.jts.geom.Point;
 
 /**
- * This service is used to make routing requests to the 
+ * This service is used to make route matrix requests to the 
  * MapQuest Directions API
  * 
  * @author Louis Drotos
  *
  */
 @Service
-public class MapQuestDirectionsService {
+public class RouteMatrixService {
 
 	@Autowired
 	private AppPropUtils appPropUtils;
 	
-	public MapQuestDirectionsService() {
+	public RouteMatrixService() {
 		// Empty body
 	}
 	

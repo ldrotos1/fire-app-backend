@@ -12,17 +12,27 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class RouteResponse {
 
-	private Shape shape;
+	private Route route;
+	
+	private Integer stationId;
 	
 	public RouteResponse() {
 		// Empty body
 	}
 
-	public Shape getShape() {
-		return shape;
+	public Route getRoute() {
+		return route;
 	}
 
-	public void setShape(Shape shape) {
-		this.shape = shape;
+	public void setRoute(Route route) {
+		this.route = route;
+	}
+
+	public Integer getStationId() {
+		return stationId;
+	}
+
+	public void setStationId(Integer stationId) {
+		this.stationId = stationId;
 	}
 }

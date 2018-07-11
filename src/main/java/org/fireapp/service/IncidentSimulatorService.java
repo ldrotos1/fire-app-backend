@@ -3,7 +3,6 @@ package org.fireapp.service;
 import java.io.IOException;
 import java.util.List;
 
-import org.fireapp.dao.RespondingStationDao;
 import org.fireapp.model.incident.FuelSpillIncident;
 import org.fireapp.model.incident.IncidentRequirements;
 import org.fireapp.model.incident.MassCasualtyIncident;
@@ -13,7 +12,7 @@ import org.fireapp.model.incident.VehicleAccidentIncident;
 import org.fireapp.model.incident.WaterRescueIncident;
 import org.fireapp.model.incident.response.IncidentResponse;
 import org.fireapp.model.incident.response.RespondingApparatus;
-import org.fireapp.model.incident.response.RespondingStation;
+import org.fireapp.model.incident.response.ResponseRoute;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +37,9 @@ public class IncidentSimulatorService {
 	@Autowired
 	private RespondingApparatusService respondingApparatusService;
 	
+	@Autowired
+	private RoutingService routingService;
+	
 	/**
 	 * Simulates the emergency services response to a structure fire
 	 * 
@@ -45,11 +47,12 @@ public class IncidentSimulatorService {
 	 * @return The incident response
 	 * @throws IOException 
 	 */
-	public IncidentResponse simulateStructureFireResponse( StructureFireIncident incident ) throws IOException {
+	public IncidentResponse simulateStructureFireResponse( StructureFireIncident incident ) throws Exception {
 		
 		IncidentRequirements respReq;
 		IncidentResponse incidentResp;
 		List<RespondingApparatus> apparatus;
+		List<ResponseRoute> routes;
 		GeometryFactory geomFactory;
 		Point incidentLocation;
 		
@@ -60,13 +63,14 @@ public class IncidentSimulatorService {
 		// Determines the number and type of apparatus that should respond
 		respReq = respReqService.getIncidentRespReq( incident );
 		
-		// Determines the apparatus that should respond to the incident
+		// Determines the apparatus that should respond to the incident and gets their travel routes
 		apparatus = this.respondingApparatusService.getRespondingApparatus( incident, respReq, incidentLocation );
-		
+		routes = this.routingService.getResponseTravelRoutes( incidentLocation, apparatus );
 		
 		// Creates the incident response package
 		incidentResp = new IncidentResponse();
 		incidentResp.setRespondingApparatus( apparatus );
+		incidentResp.setReponseRoutes( routes );
 		
 		return incidentResp;
 	}
@@ -78,11 +82,12 @@ public class IncidentSimulatorService {
 	 * @return The incident response
 	 * @throws IOException 
 	 */
-	public IncidentResponse simulateMedicalEmergencyResponse( MedicalEmergencyIncident incident ) throws IOException {
+	public IncidentResponse simulateMedicalEmergencyResponse( MedicalEmergencyIncident incident ) throws Exception {
 			
 		IncidentRequirements respReq;
 		IncidentResponse incidentResp;
 		List<RespondingApparatus> apparatus;
+		List<ResponseRoute> routes;
 		GeometryFactory geomFactory;
 		Point incidentLocation;
 		
@@ -93,12 +98,14 @@ public class IncidentSimulatorService {
 		// Determines the number and type of apparatus that should respond
 		respReq = respReqService.getIncidentRespReq( incident );
 		
-		// Determines the apparatus that should respond to the incident
+		// Determines the apparatus that should respond to the incident and gets their travel routes
 		apparatus = this.respondingApparatusService.getRespondingApparatus( incident, respReq, incidentLocation );
-		
+		routes = this.routingService.getResponseTravelRoutes( incidentLocation, apparatus );
+				
 		// Creates the incident response package
 		incidentResp = new IncidentResponse();
 		incidentResp.setRespondingApparatus( apparatus );
+		incidentResp.setReponseRoutes( routes );
 		
 		return incidentResp;
 	}
@@ -111,11 +118,12 @@ public class IncidentSimulatorService {
 	 * @return The incident response
 	 * @throws IOException 
 	 */
-	public IncidentResponse simulateMassCasualtyResponse( MassCasualtyIncident incident ) throws IOException {
+	public IncidentResponse simulateMassCasualtyResponse( MassCasualtyIncident incident ) throws Exception {
 		
 		IncidentRequirements respReq;
 		IncidentResponse incidentResp;
 		List<RespondingApparatus> apparatus;
+		List<ResponseRoute> routes;
 		GeometryFactory geomFactory;
 		Point incidentLocation;
 		
@@ -126,12 +134,14 @@ public class IncidentSimulatorService {
 		// Determines the number and type of apparatus that should respond
 		respReq = respReqService.getIncidentRespReq( incident );
 		
-		// Determines the apparatus that should respond to the incident
+		// Determines the apparatus that should respond to the incident and gets their travel routes
 		apparatus = this.respondingApparatusService.getRespondingApparatus( incident, respReq, incidentLocation );
-		
+		routes = this.routingService.getResponseTravelRoutes( incidentLocation, apparatus );
+				
 		// Creates the incident response package
 		incidentResp = new IncidentResponse();
 		incidentResp.setRespondingApparatus( apparatus );
+		incidentResp.setReponseRoutes( routes );
 		
 		return incidentResp;
 	}
@@ -143,11 +153,12 @@ public class IncidentSimulatorService {
 	 * @return The incident response
 	 * @throws IOException 
 	 */
-	public IncidentResponse simulateWaterRescueResponse( WaterRescueIncident incident ) throws IOException {
+	public IncidentResponse simulateWaterRescueResponse( WaterRescueIncident incident ) throws Exception {
 		
 		IncidentRequirements respReq;
 		IncidentResponse incidentResp;
 		List<RespondingApparatus> apparatus;
+		List<ResponseRoute> routes;
 		GeometryFactory geomFactory;
 		Point incidentLocation;
 		
@@ -158,12 +169,14 @@ public class IncidentSimulatorService {
 		// Determines the number and type of apparatus that should respond
 		respReq = respReqService.getIncidentRespReq( incident );
 		
-		// Determines the apparatus that should respond to the incident
+		// Determines the apparatus that should respond to the incident and gets their travel routes
 		apparatus = this.respondingApparatusService.getRespondingApparatus( incident, respReq, incidentLocation );
-		
+		routes = this.routingService.getResponseTravelRoutes( incidentLocation, apparatus );
+				
 		// Creates the incident response package
 		incidentResp = new IncidentResponse();
 		incidentResp.setRespondingApparatus( apparatus );
+		incidentResp.setReponseRoutes( routes );
 		
 		return incidentResp;
 	}
@@ -175,11 +188,12 @@ public class IncidentSimulatorService {
 	 * @return The incident response
 	 * @throws IOException 
 	 */
-	public IncidentResponse simulateVehicleAccidentResponse( VehicleAccidentIncident incident ) throws IOException {
+	public IncidentResponse simulateVehicleAccidentResponse( VehicleAccidentIncident incident ) throws Exception {
 		
 		IncidentRequirements respReq;
 		IncidentResponse incidentResp;
 		List<RespondingApparatus> apparatus;
+		List<ResponseRoute> routes;
 		GeometryFactory geomFactory;
 		Point incidentLocation;
 		
@@ -190,12 +204,14 @@ public class IncidentSimulatorService {
 		// Determines the number and type of apparatus that should respond
 		respReq = respReqService.getIncidentRespReq( incident );
 		
-		// Determines the apparatus that should respond to the incident
+		// Determines the apparatus that should respond to the incident and gets their travel routes
 		apparatus = this.respondingApparatusService.getRespondingApparatus( incident, respReq, incidentLocation );
-		
+		routes = this.routingService.getResponseTravelRoutes( incidentLocation, apparatus );
+				
 		// Creates the incident response package
 		incidentResp = new IncidentResponse();
 		incidentResp.setRespondingApparatus( apparatus );
+		incidentResp.setReponseRoutes( routes );
 		
 		return incidentResp;
 	}
@@ -212,6 +228,7 @@ public class IncidentSimulatorService {
 		IncidentRequirements respReq;
 		IncidentResponse incidentResp;
 		List<RespondingApparatus> apparatus;
+		List<ResponseRoute> routes;
 		GeometryFactory geomFactory;
 		Point incidentLocation;
 		
@@ -222,12 +239,14 @@ public class IncidentSimulatorService {
 		// Determines the number and type of apparatus that should respond
 		respReq = respReqService.getIncidentRespReq( incident );
 		
-		// Determines the apparatus that should respond to the incident
+		// Determines the apparatus that should respond to the incident and gets their travel routes
 		apparatus = this.respondingApparatusService.getRespondingApparatus( incident, respReq, incidentLocation );
-		
+		routes = this.routingService.getResponseTravelRoutes( incidentLocation, apparatus );
+				
 		// Creates the incident response package
 		incidentResp = new IncidentResponse();
 		incidentResp.setRespondingApparatus( apparatus );
+		incidentResp.setReponseRoutes( routes );
 		
 		return incidentResp;
 	}

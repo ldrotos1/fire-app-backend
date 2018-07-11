@@ -53,7 +53,7 @@ public class RespondingApparatusService {
 	private RespondingStationDao respondingStationDao;
 	
 	@Autowired
-	private MapQuestDirectionsService mapQuestService;
+	private RouteMatrixService routeMatrixService;
 	
 	/**
 	 * Gets a list of apparatus that should respond to the specified 
@@ -77,7 +77,7 @@ public class RespondingApparatusService {
 		stationSet.addAll( respondingStationDao.getNearestStations( location, 5 ) );
 		
 		// Computes travel times from stations
-		stationList = this.mapQuestService.computeTravelTimesAndDist( location, stationSet );
+		stationList = this.routeMatrixService.computeTravelTimesAndDist( location, stationSet );
 		
 		// Gets the responding apparatus
 		apparatus = getRespondingApparatus( respReq, stationList );
@@ -118,7 +118,7 @@ public class RespondingApparatusService {
 		}
 		
 		// Computes travel times from stations
-		stationList = this.mapQuestService.computeTravelTimesAndDist( location, stationSet );
+		stationList = this.routeMatrixService.computeTravelTimesAndDist( location, stationSet );
 		
 		// Gets the responding apparatus
 		apparatus = getRespondingApparatus( respReq, stationList );
@@ -173,7 +173,7 @@ public class RespondingApparatusService {
 		}
 		
 		// Computes travel times from stations
-		stationList = this.mapQuestService.computeTravelTimesAndDist( location, stationSet );
+		stationList = this.routeMatrixService.computeTravelTimesAndDist( location, stationSet );
 		
 		// Gets the responding apparatus
 		apparatus = getRespondingApparatus( respReq, stationList );
@@ -219,7 +219,7 @@ public class RespondingApparatusService {
 		}
 
 		// Computes travel times from stations
-		stationList = this.mapQuestService.computeTravelTimesAndDist( location, stationSet );
+		stationList = this.routeMatrixService.computeTravelTimesAndDist( location, stationSet );
 		
 		// Gets the responding apparatus
 		apparatus = getRespondingApparatus( respReq, stationList );
@@ -257,7 +257,7 @@ public class RespondingApparatusService {
 		stationSet.addAll( respondingStationDao.getNearestStationsWithApparatusType( location, 3, aerialIds ) );
 
 		// Computes travel times from stations
-		stationList = this.mapQuestService.computeTravelTimesAndDist( location, stationSet );
+		stationList = this.routeMatrixService.computeTravelTimesAndDist( location, stationSet );
 		
 		// Gets the responding apparatus
 		apparatus = getRespondingApparatus( respReq, stationList );
@@ -316,7 +316,7 @@ public class RespondingApparatusService {
 		}
 		
 		// Computes travel times from stations
-		stationList = this.mapQuestService.computeTravelTimesAndDist( location, stationSet );
+		stationList = this.routeMatrixService.computeTravelTimesAndDist( location, stationSet );
 		
 		// Gets the responding apparatus
 		apparatus = getRespondingApparatus( respReq, stationList );
