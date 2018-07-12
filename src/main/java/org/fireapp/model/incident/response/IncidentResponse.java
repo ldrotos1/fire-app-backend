@@ -2,6 +2,8 @@ package org.fireapp.model.incident.response;
 
 import java.util.List;
 
+import org.fireapp.model.incident.Incident;
+
 /**
  * Represents an emergency incident response. Includes basic
  * information about the incident, the apparatus responding to
@@ -14,10 +16,7 @@ import java.util.List;
 public class IncidentResponse {
 
 	private String incidentTitle;
-	private Integer numOfStations;
-	private Integer numOfUnits;
-	private Integer firstArrivalTime;
-	private Integer lastArrivalTime;
+	private Incident incident;
 	private List<ResponseRoute> reponseRoutes;
 	private List<RespondingApparatus> respondingApparatus;
 	
@@ -33,36 +32,12 @@ public class IncidentResponse {
 		this.incidentTitle = incidentTitle;
 	}
 
-	public Integer getNumOfStations() {
-		return numOfStations;
+	public Incident getIncident() {
+		return incident;
 	}
 
-	public void setNumOfStations(Integer numOfStations) {
-		this.numOfStations = numOfStations;
-	}
-
-	public Integer getNumOfUnits() {
-		return numOfUnits;
-	}
-
-	public void setNumOfUnits(Integer numOfUnits) {
-		this.numOfUnits = numOfUnits;
-	}
-
-	public Integer getFirstArrivalTime() {
-		return firstArrivalTime;
-	}
-
-	public void setFirstArrivalTime(Integer firstArrivalTime) {
-		this.firstArrivalTime = firstArrivalTime;
-	}
-
-	public Integer getLastArrivalTime() {
-		return lastArrivalTime;
-	}
-
-	public void setLastArrivalTime(Integer lastArrivalTime) {
-		this.lastArrivalTime = lastArrivalTime;
+	public void setIncident(Incident incident) {
+		this.incident = incident;
 	}
 
 	public List<ResponseRoute> getReponseRoutes() {

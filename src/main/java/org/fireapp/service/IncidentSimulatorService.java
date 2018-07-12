@@ -69,6 +69,8 @@ public class IncidentSimulatorService {
 		
 		// Creates the incident response package
 		incidentResp = new IncidentResponse();
+		incidentResp.setIncidentTitle( this.getIncidentTitle( incident ) );
+		incidentResp.setIncident( incident );
 		incidentResp.setRespondingApparatus( apparatus );
 		incidentResp.setReponseRoutes( routes );
 		
@@ -104,6 +106,8 @@ public class IncidentSimulatorService {
 				
 		// Creates the incident response package
 		incidentResp = new IncidentResponse();
+		incidentResp.setIncidentTitle( "Emergency Medical Incident" );
+		incidentResp.setIncident( incident );
 		incidentResp.setRespondingApparatus( apparatus );
 		incidentResp.setReponseRoutes( routes );
 		
@@ -140,6 +144,8 @@ public class IncidentSimulatorService {
 				
 		// Creates the incident response package
 		incidentResp = new IncidentResponse();
+		incidentResp.setIncidentTitle( "Mass Casualty Incident" );
+		incidentResp.setIncident( incident );
 		incidentResp.setRespondingApparatus( apparatus );
 		incidentResp.setReponseRoutes( routes );
 		
@@ -175,6 +181,8 @@ public class IncidentSimulatorService {
 				
 		// Creates the incident response package
 		incidentResp = new IncidentResponse();
+		incidentResp.setIncidentTitle( "Water Rescue Emergency" );
+		incidentResp.setIncident( incident );
 		incidentResp.setRespondingApparatus( apparatus );
 		incidentResp.setReponseRoutes( routes );
 		
@@ -210,6 +218,8 @@ public class IncidentSimulatorService {
 				
 		// Creates the incident response package
 		incidentResp = new IncidentResponse();
+		incidentResp.setIncidentTitle( "Vehicle Accident" );
+		incidentResp.setIncident( incident );
 		incidentResp.setRespondingApparatus( apparatus );
 		incidentResp.setReponseRoutes( routes );
 		
@@ -245,9 +255,81 @@ public class IncidentSimulatorService {
 				
 		// Creates the incident response package
 		incidentResp = new IncidentResponse();
+		incidentResp.setIncidentTitle( this.getIncidentTitle( incident ) );
+		incidentResp.setIncident( incident );
 		incidentResp.setRespondingApparatus( apparatus );
 		incidentResp.setReponseRoutes( routes );
 		
 		return incidentResp;
+	}
+	
+	/**
+	 * Generates a title for the specified fuel spill incident
+	 * 
+	 * @param incident The incident object
+	 * @return The incident title
+	 */
+	private String getIncidentTitle( FuelSpillIncident incident ) {
+		
+		String title;
+		
+		if ( incident.getSpillSize().equals( "small" ) ) {
+			
+			if ( incident.getIgnited() ) {
+				
+				title = "Small Buring Fuel Spill Incident";
+			}
+			else {
+				
+				title = "Small Fuel Spill Incident";
+			}
+		}
+		else {
+			
+			if ( incident.getIgnited() ) {
+				
+				title = "Large Buring Fuel Spill Incident";
+			}
+			else {
+				
+				title = "Large Fuel Spill Incident";
+			}
+		}
+		
+		return title;
+	}
+	
+	/**
+	 * Generates a title for the specified structure fire incident
+	 * 
+	 * @param incident The incident object
+	 * @return The incident title
+	 */
+	private String getIncidentTitle( StructureFireIncident incident ) {
+		
+		String title;
+		
+		switch( incident.getAlarmNumber() ) {
+		
+			case 1:
+				title = "One Alarm Structure Fire";
+				break;
+			case 2:
+				title = "Two Alarm Structure Fire";
+				break;
+			case 3:
+				title = "Three Alarm Structure Fire";
+				break;
+			case 4:
+				title = "Four Alarm Structure Fire";
+				break;
+			case 5:
+				title = "Five Alarm Structure Fire";
+				break;
+			default:
+				title = "Structure Fire";
+		}
+		
+		return title;
 	}
 }
