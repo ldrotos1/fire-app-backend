@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 /**
  * An entity class that provides a representation of 
  * a apparatus type
@@ -16,6 +18,7 @@ import javax.persistence.Transient;
  * @author Louis Drotos
  *
  */
+@JsonInclude( JsonInclude.Include.NON_NULL )
 @Entity
 @Table( name = "apparatus_type" )
 public class ApparatusType {
@@ -25,7 +28,7 @@ public class ApparatusType {
 	private Integer apparatusTypeId;
 	
 	@Column( name = "name" )
-	private String name;
+	private String typeName;
 	
 	@Column( name = "category" )
 	private String category;
@@ -50,12 +53,12 @@ public class ApparatusType {
 		this.apparatusTypeId = apparatusTypeId;
 	}
 
-	public String getName() {
-		return name;
+	public String getTypeName() {
+		return typeName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
 	}
 	
 	public String getCategory() {
@@ -100,16 +103,14 @@ public class ApparatusType {
 
 	@Override
 	public int hashCode() {
-		
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((apparatusTypeId == null) ? 0 : apparatusTypeId.hashCode());
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -117,10 +118,10 @@ public class ApparatusType {
 		if (getClass() != obj.getClass())
 			return false;
 		ApparatusType other = (ApparatusType) obj;
-		if (name == null) {
-			if (other.name != null)
+		if (apparatusTypeId == null) {
+			if (other.apparatusTypeId != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!apparatusTypeId.equals(other.apparatusTypeId))
 			return false;
 		return true;
 	}

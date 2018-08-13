@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
+
 import javax.persistence.ForeignKey;
 
 /**
@@ -33,6 +36,7 @@ public class Apparatus {
 	@Column( name = "is_reserve" )
 	private Boolean isReserve;
 	
+	@JsonUnwrapped
 	@ManyToOne( cascade = CascadeType.ALL )
 	@JoinColumn( name = "apparatus_type_id", foreignKey = 
 		@ForeignKey( name = "apparatus_apparatus_type_id_fkey" ) )
