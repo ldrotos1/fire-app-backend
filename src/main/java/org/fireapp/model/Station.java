@@ -6,10 +6,14 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
 /**
   * An entity class that provides a complete representation 
@@ -30,13 +34,16 @@ public class Station {
 	private Integer stationNumber;
 	
 	@Column( name = "station_designator" )
-	private Integer designator;
+	private Integer stationDesignator;
 	
 	@Column( name = "name" )
-	private String name;
+	private String stationName;
 	
-	@Column( name = "department_id" )
-	private Integer departmentId;
+	@JsonUnwrapped
+	@ManyToOne( cascade = CascadeType.ALL )
+	@JoinColumn( name = "department_id", foreignKey = 
+		@ForeignKey( name = "fkey_dept_id" ) )
+	private DepartmentLite department;
 	
 	@Column( name = "address" )
 	private String address;
@@ -86,28 +93,28 @@ public class Station {
 		this.stationNumber = stationNumber;
 	}
 
-	public Integer getDesignator() {
-		return designator;
+	public Integer getStationDesignator() {
+		return stationDesignator;
 	}
 
-	public void setDesignator(Integer designator) {
-		this.designator = designator;
+	public void setStationDesignator(Integer stationDesignator) {
+		this.stationDesignator = stationDesignator;
 	}
 
-	public String getName() {
-		return name;
+	public String getStationName() {
+		return stationName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setStationName(String stationName) {
+		this.stationName = stationName;
+	}
+	
+	public DepartmentLite getDepartment() {
+		return department;
 	}
 
-	public Integer getDepartmentId() {
-		return departmentId;
-	}
-
-	public void setDepartmentId(Integer departmentId) {
-		this.departmentId = departmentId;
+	public void setDepartment(DepartmentLite department) {
+		this.department = department;
 	}
 
 	public String getAddress() {
@@ -184,16 +191,15 @@ public class Station {
 
 	@Override
 	public int hashCode() {
-		
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((designator == null) ? 0 : designator.hashCode());
+		result = prime * result + ((stationDesignator == null) ? 0 : stationDesignator.hashCode());
+		result = prime * result + ((stationId == null) ? 0 : stationId.hashCode());
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -201,10 +207,15 @@ public class Station {
 		if (getClass() != obj.getClass())
 			return false;
 		Station other = (Station) obj;
-		if (designator == null) {
-			if (other.designator != null)
+		if (stationDesignator == null) {
+			if (other.stationDesignator != null)
 				return false;
-		} else if (!designator.equals(other.designator))
+		} else if (!stationDesignator.equals(other.stationDesignator))
+			return false;
+		if (stationId == null) {
+			if (other.stationId != null)
+				return false;
+		} else if (!stationId.equals(other.stationId))
 			return false;
 		return true;
 	}

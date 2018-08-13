@@ -21,7 +21,7 @@ public class DepartmentLite {
 	private Integer departmentId;
 	
 	@Column( name = "name" )
-	private String name;
+	private String departmentName;
 	
 	@Column( name = "abbreviation", table = "department" )
 	private String deptAbbreviation;
@@ -38,12 +38,12 @@ public class DepartmentLite {
 		this.departmentId = departmentId;
 	}
 
-	public String getName() {
-		return name;
+	public String getDepartmentName() {
+		return departmentName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
 	}
 
 	public String getDeptAbbreviation() {
