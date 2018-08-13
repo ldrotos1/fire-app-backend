@@ -25,7 +25,7 @@ public class StationLiteName {
 	private Integer stationId;
 	
 	@Column( name = "number" )
-	private Integer number;
+	private Integer stationNumber;
 	
 	@Column( name = "station_designator" )
 	private Integer designator;
@@ -50,12 +50,12 @@ public class StationLiteName {
 		this.stationId = stationId;
 	}
 
-	public Integer getNumber() {
-		return number;
+	public Integer getStationNumber() {
+		return stationNumber;
 	}
 
-	public void setNumber(Integer number) {
-		this.number = number;
+	public void setStationNumber(Integer stationNumber) {
+		this.stationNumber = stationNumber;
 	}
 
 	public Integer getDesignator() {
