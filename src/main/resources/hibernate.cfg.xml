@@ -10,9 +10,8 @@
         <property name="hibernate.connection.username">fireapp</property>
         <property name="hibernate.dialect">org.hibernate.spatial.dialect.postgis.PostgisDialect</property>
         <property name="hibernate.show_sql">true</property>
-        <mapping class="org.fireapp.model.StationLiteLocation"/>
         <mapping class="org.fireapp.model.StationLiteUnitCount"/>
-        <mapping class="org.fireapp.model.StationLiteName"/>
+        <mapping class="org.fireapp.model.StationLite"/>
         <mapping class="org.fireapp.model.Station"/>
         <mapping class="org.fireapp.model.Apparatus"/>
         <mapping class="org.fireapp.model.ApparatusType"/>

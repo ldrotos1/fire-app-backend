@@ -9,16 +9,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
+
 /**
-* An entity class that provides a simplified representation
-* of a fire station  
-* 
-* @author Louis Drotos
-*
-*/
+ * An entity class that provides a simplified representation 
+ * of a fire station that includes it's geographic location 
+ * 
+ * @author Louis Drotos
+ *
+ */
 @Entity
 @Table( name = "station" )
-public class StationLiteName {
+public class StationLite {
 
 	@Id
 	@Column( name = "station_id" )
@@ -28,17 +30,24 @@ public class StationLiteName {
 	private Integer stationNumber;
 	
 	@Column( name = "station_designator" )
-	private Integer designator;
+	private Integer stationDesignator;
 	
 	@Column( name = "name" )
-	private String name;
+	private String stationName;
 	
+	@Column(name = "lat")
+	private Double lat;
+	
+	@Column(name = "lon")
+	private Double lon;
+	
+	@JsonUnwrapped
 	@ManyToOne( cascade = CascadeType.ALL )
 	@JoinColumn( name = "department_id", foreignKey = 
 		@ForeignKey( name = "fk_dept_id" ) )
 	private DepartmentLite department;
 	
-	public StationLiteName() {
+	public StationLite() {
 		// Empty body
 	}
 
@@ -58,20 +67,36 @@ public class StationLiteName {
 		this.stationNumber = stationNumber;
 	}
 
-	public Integer getDesignator() {
-		return designator;
+	public Integer getStationDesignator() {
+		return stationDesignator;
 	}
 
-	public void setDesignator(Integer designator) {
-		this.designator = designator;
+	public void setStationDesignator(Integer stationDesignator) {
+		this.stationDesignator = stationDesignator;
 	}
 
-	public String getName() {
-		return name;
+	public String getStationName() {
+		return stationName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setStationName(String stationName) {
+		this.stationName = stationName;
+	}
+
+	public Double getLat() {
+		return lat;
+	}
+
+	public void setLat(Double lat) {
+		this.lat = lat;
+	}
+
+	public Double getLon() {
+		return lon;
+	}
+
+	public void setLon(Double lon) {
+		this.lon = lon;
 	}
 
 	public DepartmentLite getDepartment() {
@@ -98,7 +123,7 @@ public class StationLiteName {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		StationLiteName other = (StationLiteName) obj;
+		StationLite other = (StationLite) obj;
 		if (stationId == null) {
 			if (other.stationId != null)
 				return false;

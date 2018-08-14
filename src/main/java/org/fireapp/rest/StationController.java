@@ -2,7 +2,7 @@ package org.fireapp.rest;
 
 import java.util.List;
 
-import org.fireapp.model.StationLiteLocation;
+import org.fireapp.model.StationLite;
 import org.fireapp.model.Station;
 import org.fireapp.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class StationController {
 	 * @return The station list
 	 */
 	@RequestMapping( value = "/all", method = RequestMethod.GET, produces = "application/json" )
-    public List<StationLiteLocation> getAllStations() {
+    public List<StationLite> getAllStations() {
         
 		return stationService.getAllStations();
     }

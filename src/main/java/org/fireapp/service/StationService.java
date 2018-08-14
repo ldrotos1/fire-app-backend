@@ -2,9 +2,9 @@ package org.fireapp.service;
 
 import java.util.List;
 
-import org.fireapp.dao.StationLiteLocationDao;
+import org.fireapp.dao.StationLiteDao;
 import org.fireapp.dao.StationDao;
-import org.fireapp.model.StationLiteLocation;
+import org.fireapp.model.StationLite;
 import org.fireapp.model.Station;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ public class StationService {
 	private StationDao stationDao;
 
 	@Autowired
-	private StationLiteLocationDao stationLiteLocationDao;
+	private StationLiteDao stationLiteLocationDao;
 	
 	public StationService() {
 		// Empty body
@@ -34,7 +34,7 @@ public class StationService {
 	 * 
 	 * @return The list of fire stations
 	 */
-	public List<StationLiteLocation> getAllStations() {
+	public List<StationLite> getAllStations() {
 		
 		return stationLiteLocationDao.findAllStations();
 	}
