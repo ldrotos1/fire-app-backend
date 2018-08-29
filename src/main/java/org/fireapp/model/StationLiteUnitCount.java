@@ -26,13 +26,13 @@ public class StationLiteUnitCount {
 	private Integer stationNumber;
 	
 	@Column( name = "station_designator" )
-	private Integer designator;
+	private Integer stationDesignator;
 	
 	@Column( name = "department_id" )
 	private Integer departmentId;
 	
 	@Column( name = "name" )
-	private String name;
+	private String stationName;
 	
 	@Transient
 	private Long unitCount;
@@ -57,12 +57,12 @@ public class StationLiteUnitCount {
 		this.stationNumber = stationNumber;
 	}
 
-	public Integer getDesignator() {
-		return designator;
+	public Integer getStationDesignator() {
+		return stationDesignator;
 	}
 
-	public void setDesignator(Integer designator) {
-		this.designator = designator;
+	public void setStationDesignator(Integer stationDesignator) {
+		this.stationDesignator = stationDesignator;
 	}
 
 	public Integer getDepartmentId() {
@@ -73,12 +73,12 @@ public class StationLiteUnitCount {
 		this.departmentId = departmentId;
 	}
 
-	public String getName() {
-		return name;
+	public String getStationName() {
+		return stationName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setStationName(String stationName) {
+		this.stationName = stationName;
 	}
 
 	public Long getUnitCount() {
@@ -94,7 +94,7 @@ public class StationLiteUnitCount {
 		
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((designator == null) ? 0 : designator.hashCode());
+		result = prime * result + ((stationDesignator == null) ? 0 : stationDesignator.hashCode());
 		return result;
 	}
 
@@ -108,10 +108,10 @@ public class StationLiteUnitCount {
 		if (getClass() != obj.getClass())
 			return false;
 		StationLiteUnitCount other = (StationLiteUnitCount) obj;
-		if (designator == null) {
-			if (other.designator != null)
+		if (stationDesignator == null) {
+			if (other.stationDesignator != null)
 				return false;
-		} else if (!designator.equals(other.designator))
+		} else if (!stationDesignator.equals(other.stationDesignator))
 			return false;
 		return true;
 	}

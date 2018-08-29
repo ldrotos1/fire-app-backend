@@ -29,10 +29,13 @@ public class Department {
 	private Integer departmentId;
 	
 	@Column( name = "name" )
-	private String name;
+	private String departmentName;
 	
 	@Column( name = "chief" )
 	private String chief;
+	
+	@Column( name = "personnel" )
+	private Integer personnel;
 	
 	@Column( name = "address" )
 	private String address;
@@ -61,12 +64,12 @@ public class Department {
 		this.departmentId = departmentId;
 	}
 
-	public String getName() {
-		return name;
+	public String getDepartmentName() {
+		return departmentName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
 	}
 
 	public String getChief() {
@@ -75,6 +78,14 @@ public class Department {
 
 	public void setChief(String chief) {
 		this.chief = chief;
+	}
+
+	public Integer getPersonnel() {
+		return personnel;
+	}
+
+	public void setPersonnel(Integer personnel) {
+		this.personnel = personnel;
 	}
 
 	public String getAddress() {
@@ -130,7 +141,7 @@ public class Department {
 		
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((departmentName == null) ? 0 : departmentName.hashCode());
 		return result;
 	}
 
@@ -144,10 +155,10 @@ public class Department {
 		if (getClass() != obj.getClass())
 			return false;
 		Department other = (Department) obj;
-		if (name == null) {
-			if (other.name != null)
+		if (departmentName == null) {
+			if (other.departmentName != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!departmentName.equals(other.departmentName))
 			return false;
 		return true;
 	}
