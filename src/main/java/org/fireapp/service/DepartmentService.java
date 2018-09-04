@@ -61,10 +61,17 @@ public class DepartmentService {
 		Department dept = departmentDao.getDepartment( id );
 		
 		// Gets the apparatus count for each station
+		Long totalUnitCount = (long) 0;
 		for( StationLiteUnitCount station : dept.getStations() ) {
 			
-			station.setUnitCount( stationDao.getApparatusCount( station.getStationId() ) );
+			Long unitCount = stationDao.getApparatusCount( station.getStationId() );
+			station.setUnitCount( unitCount );
+			
+			totalUnitCount = totalUnitCount + unitCount;
 		}
+		
+		// Sets the total apparatus count for the apartment
+		dept.setUnitCount( totalUnitCount );
 		
 		// Gets and sets the apparatus category count map 
 		dept.setUnitTypeMap( apparatusDao.getCategoryCountMap( id ) );

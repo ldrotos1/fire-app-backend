@@ -54,6 +54,9 @@ public class Department {
 	private List<StationLiteUnitCount> stations;
 
 	@Transient
+	private Long unitCount;
+	
+	@Transient
 	private Map<String,BigInteger> unitTypeMap;
 	
 	public Integer getDepartmentId() {
@@ -134,6 +137,14 @@ public class Department {
 
 	public void setUnitTypeMap(Map<String, BigInteger> unitTypeMap) {
 		this.unitTypeMap = unitTypeMap;
+	}
+
+	public Long getUnitCount() {
+		return unitCount;
+	}
+
+	public void setUnitCount(Long unitCount) {
+		this.unitCount = unitCount;
 	}
 
 	@Override
