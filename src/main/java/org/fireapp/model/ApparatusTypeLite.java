@@ -21,7 +21,7 @@ public class ApparatusTypeLite {
 	private Integer apparatusTypeId;
 	
 	@Column( name = "name" )
-	private String name;
+	private String typeName;
 	
 	public ApparatusTypeLite() {
 		// Empty body
@@ -35,12 +35,12 @@ public class ApparatusTypeLite {
 		this.apparatusTypeId = apparatusTypeId;
 	}
 
-	public String getName() {
-		return name;
+	public String getTypeName() {
+		return typeName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class ApparatusTypeLite {
 		
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((typeName == null) ? 0 : typeName.hashCode());
 		return result;
 	}
 
@@ -62,10 +62,10 @@ public class ApparatusTypeLite {
 		if (getClass() != obj.getClass())
 			return false;
 		ApparatusTypeLite other = (ApparatusTypeLite) obj;
-		if (name == null) {
-			if (other.name != null)
+		if (typeName == null) {
+			if (other.typeName != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!typeName.equals(other.typeName))
 			return false;
 		return true;
 	}
