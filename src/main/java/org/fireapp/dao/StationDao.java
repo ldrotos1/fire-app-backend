@@ -1,9 +1,7 @@
 package org.fireapp.dao;
 
-import java.math.BigInteger;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.fireapp.model.Station;
 import org.springframework.stereotype.Repository;
@@ -35,35 +33,30 @@ public class StationDao extends BaseDao<Station> {
 	}
 	
 	/**
-	 * Returns a map collection of all station IDs and the number 
-	 * of apparatus of the specified type assigned to each station
+	 * Returns the list of station IDs for stations that have an
+	 * apparatus of the specified type assigned to it 
 	 * 
 	 * @param apparatusTypeId The apparatus type ID
-	 * @return The map collection
+	 * @return The station ID list
 	 */
-	public Map<Integer,BigInteger> getStationApparatusTypeMap( Integer apparatusTypeId ) {
+	public List<Integer> getStationListForApparatusType( Integer apparatusTypeId ) {
 		
 		// Creates the SQL
 		StringBuilder sql = new StringBuilder();
-		sql.append( "SELECT stat.station_id, count(*) " );
-		sql.append( "FROM station stat " );
-		sql.append( "JOIN apparatus app " );
-		sql.append( "ON stat.station_id = app.station_id " );
-		sql.append( "JOIN apparatus_type apptype " );
-		sql.append( "ON app.apparatus_type_id = apptype.apparatus_type_id " );
-		sql.append( "WHERE apptype.apparatus_type_id = " );
+		sql.append( "SELECT DISTINCT station_id " );
+		sql.append( "FROM apparatus " );
+		sql.append( "WHERE apparatus_type_id = " );
 		sql.append( apparatusTypeId );
-		sql.append( " GROUP BY stat.station_id" );
 		
-		// Gets the query results and builds the map
-		Map<Integer, BigInteger> map = new HashMap<Integer, BigInteger>();
-		List<Object[]> results = this.nativeQuery( sql.toString() );
+		// Gets the results and builds the list
+		List<Integer> stationList = new ArrayList<Integer>();
+		List<Object> results = this.nativeQuerySingleColumn( sql.toString() );
 		
-		for ( Object[] row: results ) {
+		for ( Object result: results ) {
 			
-			map.put( (Integer)row[0], (BigInteger)row[1] );
+			stationList.add( ( Integer )result );
 		}
 		
-		return map;
+		return stationList;
 	}
 }

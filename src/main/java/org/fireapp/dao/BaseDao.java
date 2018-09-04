@@ -139,4 +139,34 @@ public abstract class BaseDao<T> {
 			session.close();
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	protected List<Object> nativeQuerySingleColumn( String queryStr ) {
+		
+		Session session = this.hibernateUtils.getSession();
+		Transaction tx = null;
+		List<Object> results;
+		
+		try {
+			
+			tx = session.beginTransaction();
+			results = session.createNativeQuery( queryStr ).getResultList();
+			tx.commit();
+			
+			return results;
+		}
+		catch( Exception e ) {
+			
+			if ( tx != null ) {
+				
+				tx.rollback();
+			}
+			
+			throw e;
+		}
+		finally {
+			
+			session.close();
+		}
+	}
 }

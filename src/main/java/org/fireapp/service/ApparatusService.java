@@ -62,7 +62,7 @@ public class ApparatusService {
 		ApparatusType appType = apparatusTypeDao.getApparatusType( id );
 		
 		// Gets and sets the map collections
-		appType.setStationMap( stationDao.getStationApparatusTypeMap( id ) );
+		appType.setStationList( stationDao.getStationListForApparatusType( id ) );
 		appType.setDepartMap( departmentDao.getDeptApparatusTypeMap( id ) );
 		
 		return appType;

@@ -1,6 +1,7 @@
 package org.fireapp.model;
 
 import java.math.BigInteger;
+import java.util.List;
 import java.util.Map;
 
 import javax.persistence.Column;
@@ -43,7 +44,7 @@ public class ApparatusType {
 	private Map<Integer,BigInteger> departMap;
 	
 	@Transient
-	private Map<Integer,BigInteger> stationMap;
+	private List<Integer> stationList;
 	
 	public Integer getApparatusTypeId() {
 		return apparatusTypeId;
@@ -93,12 +94,12 @@ public class ApparatusType {
 		this.departMap = departMap;
 	}
 
-	public Map<Integer, BigInteger> getStationMap() {
-		return stationMap;
+	public List<Integer> getStationList() {
+		return stationList;
 	}
 
-	public void setStationMap(Map<Integer, BigInteger> stationMap) {
-		this.stationMap = stationMap;
+	public void setStationList(List<Integer> stationList) {
+		this.stationList = stationList;
 	}
 
 	@Override
