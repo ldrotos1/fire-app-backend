@@ -23,6 +23,9 @@ public class ApparatusTypeLite {
 	@Column( name = "name" )
 	private String typeName;
 	
+	@Column( name = "category" )
+	private String category;
+	
 	public ApparatusTypeLite() {
 		// Empty body
 	}
@@ -41,6 +44,14 @@ public class ApparatusTypeLite {
 
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	@Override
