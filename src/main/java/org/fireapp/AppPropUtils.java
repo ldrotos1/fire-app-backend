@@ -1,8 +1,9 @@
 package org.fireapp;
 
-import java.io.FileInputStream;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Properties;
 
 import org.springframework.stereotype.Component;
@@ -19,7 +20,7 @@ public class AppPropUtils {
 	private static String ROUTE_MATRIX_URL = null;
 	private static String ROUTE_URL = null;
 	
-	private static String PROPERTY_FILE = "app.properties";
+	private static String PROPERTY_FILE = "/app.properties";
 	
 	public AppPropUtils() {
 		// Empty body
@@ -65,8 +66,6 @@ public class AppPropUtils {
 	private void loadPropertyValues() {
 		
 		Properties appProps;
-		String rootPath;
-		String appPropertyFilePath;
 		String routeMatrixUrl;
 		String routeUrl;
 		String apiKey;
@@ -75,9 +74,7 @@ public class AppPropUtils {
 			
 			// Loads the property file
 			appProps = new Properties();
-			rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-			appPropertyFilePath = rootPath + PROPERTY_FILE;
-			appProps.load( new FileInputStream( appPropertyFilePath ) );
+			appProps.load( new BufferedReader(new InputStreamReader(getClass().getResourceAsStream( PROPERTY_FILE ))));
 			
 			// Gets the property values
 			routeMatrixUrl = appProps.getProperty( "route_matrix_url" );
