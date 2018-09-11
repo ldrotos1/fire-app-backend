@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
  */
 @Entity
 @Table( name = "apparatus" )
-public class RespondingApparatus {
+public class RespondingApparatus implements Comparable<RespondingApparatus>  {
 
 	@Id
 	@Column( name = "apparatus_id" )
@@ -126,5 +126,19 @@ public class RespondingApparatus {
 		} else if (!apparatusId.equals(other.apparatusId))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo( RespondingApparatus o ) {
+		
+		if ( this.travelTime < o.travelTime ) {
+			return 1;
+		}
+		else if( this.travelTime > o.travelTime ) {
+			return -1;
+		}
+		else {
+			return 0;
+		}
 	}
 }

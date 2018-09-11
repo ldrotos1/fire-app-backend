@@ -2,6 +2,7 @@ package org.fireapp.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -120,8 +121,9 @@ public class RespondingApparatusService {
 		// Computes travel times from stations
 		stationList = this.routeMatrixService.computeTravelTimesAndDist( location, stationSet );
 		
-		// Gets the responding apparatus
+		// Gets the responding apparatus and sorts them by travel time
 		apparatus = getRespondingApparatus( respReq, stationList );
+		Collections.sort( apparatus );
 		
 		return apparatus;
 	}
