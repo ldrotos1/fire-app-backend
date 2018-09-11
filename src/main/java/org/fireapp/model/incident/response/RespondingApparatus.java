@@ -13,6 +13,8 @@ import javax.persistence.Transient;
 import org.fireapp.model.ApparatusTypeLite;
 import org.fireapp.model.StationLite;
 
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
+
 /**
  * Represents an fire department apparatus that is
  * responding to an emergency incident
@@ -31,11 +33,13 @@ public class RespondingApparatus {
 	@Column( name = "unit_designator", unique = true )
 	private String unitDesignator;
 	
+	@JsonUnwrapped
 	@ManyToOne( cascade = CascadeType.ALL )
 	@JoinColumn( name = "station_id", foreignKey = 
 		@ForeignKey( name = "fk_station" ) )
 	private StationLite station;
 	
+	@JsonUnwrapped
 	@ManyToOne( cascade = CascadeType.ALL )
 	@JoinColumn( name = "apparatus_type_id", foreignKey = 
 		@ForeignKey( name = "apparatus_apparatus_type_id_fkey" ) )

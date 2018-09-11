@@ -14,6 +14,8 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table( name = "station" )
 public class RespondingStation implements Comparable<RespondingStation> {
@@ -22,9 +24,11 @@ public class RespondingStation implements Comparable<RespondingStation> {
 	@Column( name = "station_id" )
 	private Integer stationId;
 	
+	@JsonIgnore
 	@Column(name = "lat")
 	private Double lat;
 	
+	@JsonIgnore
 	@Column(name = "lon")
 	private Double lon;
 	
