@@ -131,10 +131,10 @@ public class RespondingApparatus implements Comparable<RespondingApparatus>  {
 	@Override
 	public int compareTo( RespondingApparatus o ) {
 		
-		if ( this.travelTime < o.travelTime ) {
+		if ( this.travelTime > o.travelTime ) {
 			return 1;
 		}
-		else if( this.travelTime > o.travelTime ) {
+		else if( this.travelTime < o.travelTime ) {
 			return -1;
 		}
 		else {
