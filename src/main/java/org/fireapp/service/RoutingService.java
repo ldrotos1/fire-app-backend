@@ -113,10 +113,16 @@ public class RoutingService {
         	List<Double> routePoints = respRoute.getRoute().getShape().getShapePoints(); 
         	route.setWaypoints( new ArrayList<Coordinate>() );
         	
+        	// Adds the station location to the beginning of the route
+        	route.getWaypoints().add( new Coordinate( station.getLat(), station.getLon() ) );
+        	
         	for ( int x = 0; x < routePoints.size(); x += 2 ) {
         		
         		route.getWaypoints().add( new Coordinate( routePoints.get( x ), routePoints.get( x + 1 ) ) );
         	}
+        	
+        	// Adds the incident location to the end of the route
+        	route.getWaypoints().add( new Coordinate( incidentLocation.getY(), incidentLocation.getX() ) );
         	
         	routes.add( route );
         }
